@@ -2,6 +2,7 @@ import MainPage from '../../pages/main-page';
 import Login from '../../pages/login';
 import Favorites from '../../pages/favorites';
 import Offer from '../../pages/offer';
+import NotFoundPage from '../../pages/not-found-page';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const.ts';
 
@@ -29,6 +30,10 @@ function App ({placeCount}: AppProps): JSX.Element {
         <Route
           path={AppRoute.Main}
           element={<Offer />}
+        />
+        <Route
+          path="*"
+          element={<NotFoundPage />}
         />
       </Routes>
     </BrowserRouter>
