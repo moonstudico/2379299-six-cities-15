@@ -1,4 +1,4 @@
-function FavoritesEmpty(): JSX.Element {
+function Login(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <header className="header">
@@ -42,4 +42,4 @@ function FavoritesEmpty(): JSX.Element {
   );
 }
 
-export default FavoritesEmpty;
+export default Login;

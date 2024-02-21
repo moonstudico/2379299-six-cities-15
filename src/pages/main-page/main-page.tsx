@@ -1,4 +1,4 @@
-import OfferCard from '../offer-card/offer-card.tsx';
+import OfferCard from '../../component/offer-card/offer-card.tsx';
 
 type MainPageProps = {
   placeCount: number;
