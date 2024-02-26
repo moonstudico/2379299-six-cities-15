@@ -1,4 +1,4 @@
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
 
 const getLayoutState = (pathname:AppRoute) => {
   let rootClassName = '';
@@ -20,7 +20,5 @@ const getLayoutState = (pathname:AppRoute) => {
   return {rootClassName, showUser, showFooter, linkClassName};
 };
 
-const getAuthorizationStatus = () => AuthorizationStatus.Auth;
-
-export {getLayoutState, getAuthorizationStatus };
+export {getLayoutState};
 

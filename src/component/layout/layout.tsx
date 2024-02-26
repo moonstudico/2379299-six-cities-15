@@ -1,6 +1,7 @@
 import {Outlet, useLocation} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {getLayoutState, getAuthorizationStatus} from '../layout/utils';
+import {getLayoutState} from '../layout/utils';
+import {getAuthorizationStatus} from '../../mocks';
 
 function Layout(){
   const {pathname} = useLocation();
