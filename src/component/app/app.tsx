@@ -4,9 +4,10 @@ import Favorites from '../../pages/favorites';
 import Offer from '../../pages/offer';
 import NotFoundPage from '../../pages/not-found-page';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AuthorizationStatus, AppRoute} from '../../const.ts';
+import {AppRoute} from '../../const.ts';
 import PrivateRoute from '../../component/private-route';
 import Layout from '../layout';
+import {getAuthorizationStatus} from '../../mocks.ts';
 
 type AppProps = {
   placeCount: number;
@@ -23,13 +24,19 @@ function App ({placeCount}: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Login}
-            element={<Login />}
+            element={
+              <PrivateRoute
+                authorizationStatus={getAuthorizationStatus()} isReverse
+              >
+                <Login />
+              </PrivateRoute>
+            }
           />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.Auth}
+                authorizationStatus={getAuthorizationStatus()}
               >
                 <Favorites />
               </PrivateRoute>
