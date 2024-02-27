@@ -1,26 +1,17 @@
 import OfferCard from '../../component/offer-card';
-import ComponentLiLocations from './component-li-locations';
+import Locations from './locations';
+import {Offer} from '../../types/offer';
 
 type MainPageProps = {
   placeCount: number;
+  offers: Offer[];
 }
 
-function MainPage({placeCount}: MainPageProps): JSX.Element {
+function MainPage({placeCount, offers}: MainPageProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <ComponentLiLocations />
-            <ComponentLiLocations />
-            <ComponentLiLocations />
-            <ComponentLiLocations />
-            <ComponentLiLocations />
-            <ComponentLiLocations />
-          </ul>
-        </section>
-      </div>
+      <Locations />
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
@@ -42,11 +33,9 @@ function MainPage({placeCount}: MainPageProps): JSX.Element {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <OfferCard />
-              <OfferCard />
-              <OfferCard />
-              <OfferCard />
-              <OfferCard />
+              {
+                offers.map((offer) => <OfferCard offer={offer} key={offer.id}/>)
+              }
             </div>
           </section>
           <div className="cities__right-section">
@@ -58,6 +47,4 @@ function MainPage({placeCount}: MainPageProps): JSX.Element {
   );
 }
 
-
 export default MainPage;
-
