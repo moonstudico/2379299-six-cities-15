@@ -1,4 +1,13 @@
-function Favorites(): JSX.Element {
+import { Offer } from '../../types/offer';
+import { Link } from 'react-router-dom';
+import {Citys} from '../../types/city';
+
+type Props = {
+  favorites: Offer[];
+}
+
+function Favorites({favorites}: Props): JSX.Element {
+  console.log(33);
   return (
     <main className="page__main page__main--favorites">
       <div className="page__favorites-container container">
@@ -8,9 +17,9 @@ function Favorites(): JSX.Element {
             <li className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">
-                  <a className="locations__item-link" href="#">
+                  <Link className="locations__item-link" to="#">
                     <span>Amsterdam</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="favorites__places">

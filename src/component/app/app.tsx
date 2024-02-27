@@ -9,21 +9,30 @@ import PrivateRoute from '../../component/private-route';
 import Layout from '../layout';
 import {getAuthorizationStatus} from '../../mocks.ts';
 import {Offer} from '../../types/offer.ts';
+import { City } from '../../types/city.ts';
 
 type AppProps = {
   placeCount: number;
   offers: Offer[];
+  favorites: Offer[];
+  cities: City[];
 }
 
 
-function App ({placeCount, offers}: AppProps): JSX.Element {
+function App ({placeCount, offers, favorites, cities}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             path={AppRoute.Main}
-            element={<MainPage placeCount = {placeCount} offers = {offers}/>}
+            element={
+              <MainPage
+                placeCount = {placeCount}
+                offers = {offers}
+                cities = {cities}
+              />
+            }
           />
           <Route
             path={AppRoute.Login}
@@ -41,7 +50,7 @@ function App ({placeCount, offers}: AppProps): JSX.Element {
               <PrivateRoute
                 authorizationStatus={getAuthorizationStatus()}
               >
-                <Favorites />
+                <Favorites favorites = {favorites}/>
               </PrivateRoute>
             }
           />

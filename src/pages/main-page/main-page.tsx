@@ -1,17 +1,19 @@
 import OfferCard from '../../component/offer-card';
 import Locations from './locations';
 import {Offer} from '../../types/offer';
+import { City } from '../../types/city';
 
 type MainPageProps = {
   placeCount: number;
   offers: Offer[];
+  cities: City[];
 }
 
-function MainPage({placeCount, offers}: MainPageProps): JSX.Element {
+function MainPage({placeCount, offers, cities}: MainPageProps): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <Locations />
+      <Locations cities = {cities}/>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
