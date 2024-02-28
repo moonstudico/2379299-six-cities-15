@@ -49,7 +49,10 @@ function App ({placeCount, offers, favorites, cities}: AppProps): JSX.Element {
               <PrivateRoute
                 authorizationStatus={getAuthorizationStatus()}
               >
-                <Favorites favorites = {favorites}/>
+                <Favorites
+                  favorites = {favorites}
+                  cities = {cities}
+                />
               </PrivateRoute>
             }
           />
