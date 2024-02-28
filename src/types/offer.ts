@@ -8,10 +8,16 @@ type City = {
   location: Location;
 }
 
+type HousingType =
+  | 'apartment'
+  | 'room'
+  | 'house'
+  | 'hotel';
+
 export type Offer = {
   id: string;
   title: string;
-  type: string;
+  type: HousingType;
   price: number;
   previewImage: string;
   city: City;

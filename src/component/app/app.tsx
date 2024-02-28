@@ -18,7 +18,6 @@ type AppProps = {
   cities: City[];
 }
 
-
 function App ({placeCount, offers, favorites, cities}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
