@@ -11,6 +11,7 @@ import {getAuthorizationStatus} from '../../mocks.ts';
 import {Offer} from '../../types/offer.ts';
 import { City } from '../../types/city.ts';
 import { ExtendedOffer } from '../../types/extended offer.ts';
+import { Review } from '../../types/review.ts';
 
 type AppProps = {
   placeCount: number;
@@ -18,9 +19,10 @@ type AppProps = {
   favorites: Offer[];
   cities: City[];
   extendedOffers: ExtendedOffer;
+  reviews: Review;
 }
 
-function App ({placeCount, offers, favorites, cities, extendedOffers}: AppProps): JSX.Element {
+function App ({placeCount, offers, favorites, cities, extendedOffers, reviews}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -63,6 +65,7 @@ function App ({placeCount, offers, favorites, cities, extendedOffers}: AppProps)
             element={
               <OfferPage
                 extendedOffers = {extendedOffers}
+                reviews = {reviews}
               />
             }
           />
