@@ -7,10 +7,13 @@ type Props = {
 }
 
 function OfferCard({offer}:Props): JSX.Element {
+
   const [activeCard, setActiveCard] = useState('');
   const handleMouseEnter = () => {
     setActiveCard('place-card__bookmark-button--active');
   };
+
+  const offerPath = `/offer/${offer.id}`;
 
   const handleMouseLeave = () => {
     setActiveCard('');
@@ -22,11 +25,15 @@ function OfferCard({offer}:Props): JSX.Element {
       onMouseLeave={handleMouseLeave}
       className="cities__card place-card"
     >
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+      {
+        offer.isPremium ? (
+          <div className="place-card__mark">
+            <span>Premium</span>
+          </div>
+        ) : null
+      }
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to="#">
+        <Link to={offerPath}>
           <img
 
             className="place-card__image"
@@ -57,7 +64,7 @@ function OfferCard({offer}:Props): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to="#">{offer.title}</Link>
+          <Link to={offerPath}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

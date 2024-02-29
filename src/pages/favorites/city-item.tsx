@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
+import { AppRoute } from '../../const';
 
 type Props = {
   favorit: Offer;
@@ -8,11 +9,15 @@ type Props = {
 function CityItem({favorit}: Props):JSX.Element{
   return(
     <article className="favorites__card place-card">
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
+      {
+        favorit.isPremium ? (
+          <div className="place-card__mark">
+            <span>Premium</span>
+          </div>
+        ) : null
+      }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to="#">
+        <Link to={AppRoute.Offer}>
           <img className="place-card__image" src={favorit.previewImage} width="150" height="110" alt="Place image" />
         </Link>
       </div>

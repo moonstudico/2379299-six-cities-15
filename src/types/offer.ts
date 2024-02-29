@@ -1,14 +1,14 @@
-type Location = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 }
-type City = {
+export type City = {
   name: string;
   location: Location;
 }
 
-type HousingType =
+export type HousingType =
   | 'apartment'
   | 'room'
   | 'house'

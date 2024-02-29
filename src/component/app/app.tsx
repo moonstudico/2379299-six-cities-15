@@ -10,15 +10,17 @@ import Layout from '../layout';
 import {getAuthorizationStatus} from '../../mocks.ts';
 import {Offer} from '../../types/offer.ts';
 import { City } from '../../types/city.ts';
+import { ExtendedOffer } from '../../types/extended offer.ts';
 
 type AppProps = {
   placeCount: number;
   offers: Offer[];
   favorites: Offer[];
   cities: City[];
+  extendedOffers: ExtendedOffer;
 }
 
-function App ({placeCount, offers, favorites, cities}: AppProps): JSX.Element {
+function App ({placeCount, offers, favorites, cities, extendedOffers}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -58,7 +60,11 @@ function App ({placeCount, offers, favorites, cities}: AppProps): JSX.Element {
           />
           <Route
             path={AppRoute.Offer}
-            element={<OfferPage />}
+            element={
+              <OfferPage
+                extendedOffers = {extendedOffers}
+              />
+            }
           />
           <Route
             path="*"
