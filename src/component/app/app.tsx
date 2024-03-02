@@ -18,7 +18,7 @@ type AppProps = {
   offers: Offer[];
   favorites: Offer[];
   cities: City[];
-  extendedOffers: ExtendedOffer;
+  extendedOffers: ExtendedOffer[];
   reviews: Review;
 }
 

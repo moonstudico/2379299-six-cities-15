@@ -19,7 +19,7 @@ export type ExtendedOffer = {
   rating: number;
   description: string;
   bedrooms: number;
-  goods: [string];
+  goods: string[];
   host: Host;
   images: string[];
   maxAdults: number;
