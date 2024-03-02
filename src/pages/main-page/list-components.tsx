@@ -1,5 +1,6 @@
 import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
+import { useState } from 'react';
 
 type Props = {
   placeCount: number;
@@ -7,6 +8,8 @@ type Props = {
 }
 
 function ListComponents ({placeCount, offers }: Props): JSX.Element{
+  const [activeCardId, setActiveCardId] = useState<string>();
+  console.log('activeCardId', activeCardId);
   return(
     <div className="cities">
       <div className="cities__places-container container">
@@ -30,7 +33,7 @@ function ListComponents ({placeCount, offers }: Props): JSX.Element{
           </form>
           <div className="cities__places-list places__list tabs__content">
             {
-              offers.map((offer) => <OfferCard offer={offer} key={offer.id}/>)
+              offers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId}/>)
             }
           </div>
         </section>
