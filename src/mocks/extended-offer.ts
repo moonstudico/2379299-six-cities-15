@@ -27,7 +27,7 @@ const extendedOffers : ExtendedOffer[] = [
     goods: ['Heating'],
     host: {
       name: 'Oliver Conner',
-      avatarUrl: 'img/avatar-angelina.jpg',
+      avatarUrl: 'https://loremflickr.com/320/240/people?random=9',
       isPro: false
     },
     images: ['https://15.design.htmlacademy.pro/static/hotel/14.jpg', 'https://15.design.htmlacademy.pro/static/hotel/15.jpg'],
@@ -59,7 +59,7 @@ const extendedOffers : ExtendedOffer[] = [
     goods: ['Dishwasher', 'Parking', 'Wi-Fi'],
     host: {
       name: 'Alice Jones',
-      avatarUrl: 'img/avatar-alice.jpg',
+      avatarUrl: 'https://loremflickr.com/320/240/people?random=8',
       isPro: true
     },
     images: ['https://15.design.htmlacademy.pro/static/hotel/16.jpg', 'https://15.design.htmlacademy.pro/static/hotel/17.jpg'],
@@ -91,7 +91,7 @@ const extendedOffers : ExtendedOffer[] = [
     goods: ['Cable TV', 'Coffee machine'],
     host: {
       name: 'Max Johnson',
-      avatarUrl: 'img/avatar-max.jpg',
+      avatarUrl: 'https://loremflickr.com/320/240/people?random=17',
       isPro: false
     },
     images: ['https://15.design.htmlacademy.pro/static/hotel/18.jpg', 'https://15.design.htmlacademy.pro/static/hotel/19.jpg'],
@@ -123,7 +123,7 @@ const extendedOffers : ExtendedOffer[] = [
     goods: ['Free Wi-Fi', 'Kitchen', 'Dishwasher', 'Cable TV'],
     host: {
       name: 'Jean Dupont',
-      avatarUrl: 'https://15.design.htmlacademy.pro/static/avatar/6.jpg',
+      avatarUrl: 'https://loremflickr.com/320/240/people?random=13',
       isPro: true
     },
     images: [
