@@ -135,5 +135,6 @@ const extendedOffers : ExtendedOffer[] = [
   }
 ];
 
-
-export {extendedOffers};
+const getOfferById = (offerId?: string) => (extendedOffers.find((item) => item.id === offerId));
+const getOtherOffers = (offerId?: string) => (extendedOffers.filter((item) => item.id !== offerId));
+export {getOfferById, getOtherOffers};
