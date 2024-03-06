@@ -3,22 +3,26 @@ import {Offer} from '../../types/offer';
 
 type Props = {
   offer: Offer;
-  setActiveCardId: (str: string) => void ;
+  setActiveCardId?: (str: string) => void ;
 }
 
 function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
 
   const handleMouseEnter = () => {
-    setActiveCardId(offer.id);
+    if(setActiveCardId){
+      setActiveCardId(offer.id);
+    }
+
     // 'place-card__bookmark-button--active' класс для фаворит
   };
 
   const offerPath = `/offer/${offer.id}`;
 
   const handleMouseLeave = () => {
-    setActiveCardId('');
+    if(setActiveCardId){
+      setActiveCardId('');
+    }
   };
-
 
   return (
     <article

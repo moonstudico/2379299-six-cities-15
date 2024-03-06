@@ -15,7 +15,6 @@ type Props = {
 function Map({currentCity, points, activeCardId}: Props) {
   const mapRef = useRef(null);
   const map = useMap(mapRef, currentCity);
-
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [40, 40],

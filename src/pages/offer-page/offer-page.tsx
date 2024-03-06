@@ -8,6 +8,8 @@ import {Navigate} from 'react-router-dom';
 import { getOfferById } from '../../mocks/extended-offer';
 import OfferInside from './offer-inside';
 import { Offer } from '../../types/offer';
+import Map from '../../component/map';
+
 
 type Props = {
   reviews: Review[];
@@ -18,6 +20,9 @@ function OfferPage({reviews, offers}: Props): JSX.Element {
 
   const { id } = useParams<{ id: string }>();
   const extendedOffer = getOfferById(id);
+  // const nearbyOffers = getNearbyOffers(id);
+  // const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffers.concat(offers)
+
 
   if (extendedOffer){
     const {isPremium, title, rating, type, bedrooms, maxAdults, price} = extendedOffer;
@@ -71,9 +76,11 @@ function OfferPage({reviews, offers}: Props): JSX.Element {
               <UseReviews reviews = {reviews}/>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className="offer__map map">
+            <Map currentCity={offers[0].city} points = {offers.slice(0, 3)} activeCardId = {extendedOffer.id}/>
+          </section>
         </section>
-        <ContainerOffers offers = {offers}/>
+        <ContainerOffers offers = {offers.slice(0, 3)}/>
       </main>
     );
   } else {

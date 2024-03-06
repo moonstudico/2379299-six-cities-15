@@ -1,6 +1,5 @@
 import { Review } from '../../types/review';
 
-
 type Props = {
   review: Review;
 }
