@@ -7,13 +7,14 @@ import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { City } from '../../types/offer';
 
 type Props = {
-  city: City;
+  currentCity: City;
   points: Offer[];
+  activeCardId: string | undefined;
 }
 
-function Map({city, points}: Props) {
+function Map({currentCity, points, activeCardId}: Props) {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, currentCity);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -35,12 +36,14 @@ function Map({city, points}: Props) {
             lat: point.location.latitude,
             lng: point.location.longitude,
           }, {
-            icon: defaultCustomIcon,
+            icon: (point.id === activeCardId)
+              ? currentCustomIcon
+              : defaultCustomIcon,
           })
           .addTo(map);
       });
     }
-  }, [map, points]);
+  }, [map, points, activeCardId, currentCustomIcon, defaultCustomIcon]);
 
   return (
     <div

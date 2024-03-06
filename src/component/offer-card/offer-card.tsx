@@ -3,7 +3,7 @@ import {Offer} from '../../types/offer';
 
 type Props = {
   offer: Offer;
-  setActiveCardId?: (str: string) => void;
+  setActiveCardId: (str: string) => void ;
 }
 
 function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
@@ -18,6 +18,7 @@ function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
   const handleMouseLeave = () => {
     setActiveCardId('');
   };
+
 
   return (
     <article

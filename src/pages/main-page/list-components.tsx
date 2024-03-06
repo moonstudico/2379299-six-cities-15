@@ -8,11 +8,9 @@ type Props = {
   offers: Offer[];
 }
 
-function ListComponents ({placeCount, offers }: Props): JSX.Element{
+function ListComponents ({placeCount, offers}: Props): JSX.Element{
   const [activeCardId, setActiveCardId] = useState<string>();
 
- 
-  console.log('activeCardId', activeCardId);
   return(
     <div className="cities">
       <div className="cities__places-container container">
@@ -43,7 +41,7 @@ function ListComponents ({placeCount, offers }: Props): JSX.Element{
         <div className="cities__right-section">
 
           <section className="cities__map map">
-            <Map city={offers[0].city} points = {offers} />
+            <Map currentCity={offers[0].city} points = {offers} activeCardId = {activeCardId}/>
           </section>
         </div>
       </div>

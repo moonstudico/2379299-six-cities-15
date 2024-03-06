@@ -30,7 +30,7 @@ function useMap(mapRef: React.RefObject<HTMLDivElement>, city: City) {
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, latitude, longitude, zoom]);
 
   return map;
 }
