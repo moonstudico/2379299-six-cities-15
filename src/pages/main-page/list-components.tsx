@@ -10,6 +10,8 @@ type Props = {
 
 function ListComponents ({placeCount, offers }: Props): JSX.Element{
   const [activeCardId, setActiveCardId] = useState<string>();
+
+ 
   console.log('activeCardId', activeCardId);
   return(
     <div className="cities">

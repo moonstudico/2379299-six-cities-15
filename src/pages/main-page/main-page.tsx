@@ -10,10 +10,14 @@ type MainPageProps = {
 }
 
 function MainPage({placeCount, offers, cities}: MainPageProps): JSX.Element {
+  const [selectedPoint, setSelectedPoint] = useState({});
+
+  const handleListItemHover = (listItemName) => {};
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <Locations cities = {cities}/>
+      <Locations cities = {cities} onListItemHover={handleListItemHover}/>
       <ListComponents placeCount={placeCount} offers={offers}/>
     </main>
   );
