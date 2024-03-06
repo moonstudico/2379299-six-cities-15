@@ -6,7 +6,7 @@ type Props = {
   onListItemHover: (city: string) => void;
 }
 
-function Locations({cities}: Props): JSX.Element {
+function Locations({cities, onListItemHover}: Props): JSX.Element {
   const handleListItemHover = (evt: React.MouseEvent<HTMLElement>) => {
 
     onListItemHover(evt.target.innerText);
