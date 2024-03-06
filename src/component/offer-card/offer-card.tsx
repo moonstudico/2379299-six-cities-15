@@ -12,6 +12,7 @@ function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
     if(setActiveCardId){
       setActiveCardId(offer.id);
     }
+
     // 'place-card__bookmark-button--active' класс для фаворит
   };
 
@@ -22,7 +23,6 @@ function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
       setActiveCardId('');
     }
   };
-
 
   return (
     <article
