@@ -1,6 +1,7 @@
 import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
+import Map from '../../component/map';
 
 type Props = {
   placeCount: number;
@@ -38,7 +39,10 @@ function ListComponents ({placeCount, offers }: Props): JSX.Element{
           </div>
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+
+          <section className="cities__map map">
+            <Map city={offers[0].city} points = {offers} />
+          </section>
         </div>
       </div>
     </div>
