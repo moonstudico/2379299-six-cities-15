@@ -1,16 +1,21 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity } from './action';
+import { getOffersByCity } from './action';
+import { Offer } from '../types/offer';
+// import
 
 const initialState = {
-  defaultСity: 'Paris',
-  listPlaces: []
+  currentСity: 'Paris',
+  offers: []
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(changeCity, (state) =>{
-      console.log('изменение города ---->', state.defaultСity, 'изменение предложений по городу---->', state.listPlaces)
+    .addCase(changeCity, (state, {payload}) => {
+      state.currentСity = payload;
+    })
+    .addCase(getOffersByCity, (state, {payload}) => {
+      state.offers = payload.filter((offer: Offer) => offer.city.name === state.currentСity)
     });
 });
-
-export {reducer};
+export {reducer, getOffersByCity};

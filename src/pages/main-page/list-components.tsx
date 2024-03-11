@@ -2,6 +2,8 @@ import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
 import Map from '../../component/map';
+import { getOffersByCity } from '../../store/action';
+import { useAppDispatch, useAppSelector } from '../../hock';
 
 type Props = {
   placeCount: number;
@@ -10,7 +12,10 @@ type Props = {
 
 function ListComponents ({placeCount, offers}: Props): JSX.Element{
   const [activeCardId, setActiveCardId] = useState<string>();
-
+  const dispatch = useAppDispatch();
+  dispatch(getOffersByCity(offers));
+  // const currentOffers = useAppSelector((state) => state.offers);
+  // console.log(currentOffers)
   return(
     <div className="cities">
       <div className="cities__places-container container">
