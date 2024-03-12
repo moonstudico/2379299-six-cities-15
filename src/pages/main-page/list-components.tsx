@@ -6,11 +6,10 @@ import { getOffers } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hock';
 
 type Props = {
-  placeCount: number;
   offers: Offer[];
 }
 
-function ListComponents ({placeCount, offers}: Props): JSX.Element{
+function ListComponents ({offers}: Props): JSX.Element{
   const [activeCardId, setActiveCardId] = useState<string>();
   const dispatch = useAppDispatch();
   dispatch(getOffers(offers));
@@ -22,7 +21,7 @@ function ListComponents ({placeCount, offers}: Props): JSX.Element{
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found"> {placeCount} places to stay in Amsterdam</b>
+          <b className="places__found"> {currentOffers.length} places to stay in Amsterdam</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>

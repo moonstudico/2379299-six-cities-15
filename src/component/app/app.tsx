@@ -13,13 +13,12 @@ import { City } from '../../types/city.ts';
 import { Review } from '../../types/review.ts';
 
 type AppProps = {
-  placeCount: number;
   offers: Offer[];
   favorites: Offer[];
   cities: City[];
   reviews: Review[];
 }
-function App ({placeCount, offers, favorites, cities, reviews}: AppProps): JSX.Element {
+function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -28,7 +27,6 @@ function App ({placeCount, offers, favorites, cities, reviews}: AppProps): JSX.E
             path={AppRoute.Main}
             element={
               <MainPage
-                placeCount = {placeCount}
                 offers = {offers}
                 cities = {cities}
               />
