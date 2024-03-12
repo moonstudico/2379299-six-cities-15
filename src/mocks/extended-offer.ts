@@ -62,7 +62,7 @@ const extendedOffers : ExtendedOffer[] = [
       avatarUrl: 'https://loremflickr.com/320/240/people?random=829',
       isPro: true
     },
-    images: ['https://15.design.htmlacademy.pro/static/hotel/16.jpg', 'https://15.design.htmlacademy.pro/static/hotel/17.jpg'],
+    images: ['https://15.design.htmlacademy.pro/static/hotel/3.jpg', 'https://15.design.htmlacademy.pro/static/hotel/4.jpg'],
     maxAdults: 3
   },
   {
@@ -94,7 +94,7 @@ const extendedOffers : ExtendedOffer[] = [
       avatarUrl: 'https://loremflickr.com/320/240/people?random=824',
       isPro: false
     },
-    images: ['https://15.design.htmlacademy.pro/static/hotel/18.jpg', 'https://15.design.htmlacademy.pro/static/hotel/19.jpg'],
+    images: ['https://15.design.htmlacademy.pro/static/hotel/2.jpg', 'https://15.design.htmlacademy.pro/static/hotel/1.jpg'],
     maxAdults: 2
   },
   {
@@ -128,8 +128,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -164,8 +164,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -199,9 +199,9 @@ const extendedOffers : ExtendedOffer[] = [
       isPro: true
     },
     images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/4.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/6.jpg'
     ],
     maxAdults: 2
   },
@@ -237,9 +237,9 @@ const extendedOffers : ExtendedOffer[] = [
       isPro: true
     },
     images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/3.jpg'
     ],
     maxAdults: 2
   },
@@ -273,9 +273,9 @@ const extendedOffers : ExtendedOffer[] = [
       isPro: true
     },
     images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/7.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/9.jpg'
     ],
     maxAdults: 2
   },
@@ -309,9 +309,9 @@ const extendedOffers : ExtendedOffer[] = [
       isPro: true
     },
     images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/10.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/12.jpg'
     ],
     maxAdults: 2
   },
@@ -345,9 +345,9 @@ const extendedOffers : ExtendedOffer[] = [
       isPro: true
     },
     images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/13.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/15.jpg'
     ],
     maxAdults: 2
   },
@@ -381,9 +381,9 @@ const extendedOffers : ExtendedOffer[] = [
       isPro: true
     },
     images: [
-      'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/4.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/7.jpg'
     ],
     maxAdults: 2
   },
@@ -418,8 +418,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -454,8 +454,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -490,8 +490,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -526,8 +526,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -562,8 +562,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -598,8 +598,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -634,8 +634,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -670,8 +670,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -706,8 +706,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -742,8 +742,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -778,8 +778,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -814,8 +814,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -850,8 +850,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -886,8 +886,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -922,8 +922,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -958,8 +958,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -994,8 +994,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -1030,8 +1030,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -1066,8 +1066,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -1102,8 +1102,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   },
@@ -1137,8 +1137,8 @@ const extendedOffers : ExtendedOffer[] = [
     },
     images: [
       'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/21.jpg',
-      'https://15.design.htmlacademy.pro/static/hotel/22.jpg'
+      'https://15.design.htmlacademy.pro/static/hotel/14.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     maxAdults: 2
   }
