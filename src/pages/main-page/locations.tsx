@@ -1,3 +1,5 @@
+import { useAppDispatch, useAppSelector } from '../../hock';
+import { changeCity } from '../../store/action';
 import { City } from '../../types/city';
 import { Link } from 'react-router-dom';
 
@@ -6,6 +8,9 @@ type Props = {
 }
 
 function Locations({cities}: Props): JSX.Element {
+  const dispatch = useAppDispatch();
+  const currentCity = useAppSelector((state) => state.currentCity);
+
   return (
     <div className="tabs">
       <section className="locations container">
@@ -13,8 +18,14 @@ function Locations({cities}: Props): JSX.Element {
           {
             cities.map((city) => (
               <li key={city} className="locations__item">
-                <Link className="locations__item-link tabs__item" to="#">
-                  <span>{city}</span>
+                <Link className={`locations__item-link tabs__item ${currentCity === city ? 'tabs__item--active' : ''}`} to="#">
+                  <span
+                    onClick={() =>{
+                      dispatch(changeCity(city));
+                    }}
+
+                  >{city}
+                  </span>
                 </Link>
               </li>)
             )

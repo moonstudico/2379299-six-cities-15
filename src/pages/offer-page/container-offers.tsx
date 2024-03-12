@@ -13,7 +13,7 @@ function ContainerOffers({offers}: Props): JSX.Element{
         <h2 className="near-places__title">Other places in the neighbourhood</h2>
         <div className="near-places__list places__list">
           {
-            offers.map((offer) => <OfferCard offer={offer} key={offer.id}/>)
+            offers.map((offer) => <OfferCard offer={offer} key={offer.id} className="near-places"/>)
           }
         </div>
       </section>

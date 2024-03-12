@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, Fragment, useState } from 'react';
 
 function Form () : JSX.Element {
   const [comment, setCommet] = useState('');
@@ -20,7 +20,7 @@ function Form () : JSX.Element {
         {
 
           [5,4,3,2,1].map((item) => (
-            <>
+            <Fragment key={item}>
               <input
                 className="form__rating-input visually-hidden"
                 name="rating"
@@ -34,7 +34,7 @@ function Form () : JSX.Element {
                   <use xlinkHref="#icon-star"></use>
                 </svg>
               </label>
-            </>
+            </Fragment>
           ))
         }
       </div>

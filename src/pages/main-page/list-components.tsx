@@ -2,21 +2,26 @@ import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
 import Map from '../../component/map';
+import { getOffers } from '../../store/action';
+import { useAppDispatch, useAppSelector } from '../../hock';
 
 type Props = {
-  placeCount: number;
   offers: Offer[];
 }
 
-function ListComponents ({placeCount, offers}: Props): JSX.Element{
+function ListComponents ({offers}: Props): JSX.Element{
   const [activeCardId, setActiveCardId] = useState<string>();
+  const dispatch = useAppDispatch();
+  dispatch(getOffers(offers));
+  // const allOffers = useAppSelector((state) => state.offers);
+  const currentOffers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.currentCity));
 
   return(
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found"> {placeCount} places to stay in Amsterdam</b>
+          <b className="places__found"> {currentOffers.length} places to stay in Amsterdam</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -34,15 +39,12 @@ function ListComponents ({placeCount, offers}: Props): JSX.Element{
           </form>
           <div className="cities__places-list places__list tabs__content">
             {
-              offers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId}/>)
+              currentOffers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId} className="cities"/>)
             }
           </div>
         </section>
         <div className="cities__right-section">
-
-          <section className="cities__map map">
-            <Map currentCity={offers[0].city} points = {offers} activeCardId = {activeCardId}/>
-          </section>
+          <Map currentCity={currentOffers[0].city} points = {currentOffers} activeCardId = {activeCardId} className="cities" />
         </div>
       </div>
     </div>
