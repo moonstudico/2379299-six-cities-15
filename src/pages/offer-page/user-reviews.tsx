@@ -6,7 +6,7 @@ type Props = {
   reviews: Review[];
 }
 
-function UseReviews ({reviews}: Props): JSX.Element{
+function UserReviews ({reviews}: Props): JSX.Element{
   return(
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
@@ -20,4 +20,4 @@ function UseReviews ({reviews}: Props): JSX.Element{
   );
 }
 
-export default UseReviews;
+export default UserReviews;

@@ -4,7 +4,6 @@ import { City } from '../../types/offer';
 
 function useMap(mapRef: React.RefObject<HTMLDivElement>, city: City) {
   const {location: { latitude, longitude, zoom }} = city;
-
   const [map, setMap] = useState <leaflet.Map | null>(null);
   const isRenderedRef = useRef(false);
 

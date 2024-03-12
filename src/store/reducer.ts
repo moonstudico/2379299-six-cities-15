@@ -1,21 +1,23 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity } from './action';
-import { getOffersByCity } from './action';
+import { getOffers} from './action';
 import { Offer } from '../types/offer';
-// import
 
-const initialState = {
-  currentСity: 'Paris',
-  offers: []
+const initialState: {
+  currentCity: string;
+  offers: Offer[];
+} = {
+  currentCity: 'Paris',
+  offers: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, {payload}) => {
-      state.currentСity = payload;
+      state.currentCity = payload;
     })
-    .addCase(getOffersByCity, (state, {payload}) => {
-      state.offers = payload.filter((offer: Offer) => offer.city.name === state.currentСity)
+    .addCase(getOffers, (state, {payload}) => {
+      state.offers = payload;
     });
 });
-export {reducer, getOffersByCity};
+export {reducer, getOffers};

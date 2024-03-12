@@ -1,11 +1,11 @@
 import { Review } from '../../types/review';
 import Host from './host';
-import UseReviews from './user-reviews';
+import UserReviews from './user-reviews';
 import ContainerOffers from './container-offers';
 import GaleriContaner from './galeri-contaner';
 import { useParams } from 'react-router-dom';
 import {Navigate} from 'react-router-dom';
-import { getOfferById } from '../../mocks/extended-offer';
+import { getOfferById, getNearbyOffers } from '../../mocks/extended-offer';
 import OfferInside from './offer-inside';
 import { Offer } from '../../types/offer';
 import Map from '../../component/map';
@@ -20,8 +20,8 @@ function OfferPage({reviews, offers}: Props): JSX.Element {
 
   const { id } = useParams<{ id: string }>();
   const extendedOffer = getOfferById(id);
-  // const nearbyOffers = getNearbyOffers(id);
-  // const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffers.concat(offers)
+  const nearbyOffers = getNearbyOffers(id);
+  //   const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffers.concat(extendedOffer);
 
 
   if (extendedOffer){
@@ -33,9 +33,14 @@ function OfferPage({reviews, offers}: Props): JSX.Element {
           <GaleriContaner extendedOffer = {extendedOffer}/>
           <div className="offer__container container">
             <div className="offer__wrapper">
-              <div className="offer__mark">
-                <span>{isPremium}</span>
-              </div>
+              {
+                isPremium ?
+                  (
+                    <div className="offer__mark">
+                      <span>Premium</span>
+                    </div>
+                  ) : null
+              }
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">
                   {title}
@@ -73,12 +78,10 @@ function OfferPage({reviews, offers}: Props): JSX.Element {
               </div>
               <OfferInside extendedOffer = {extendedOffer}/>
               <Host extendedOffer = {extendedOffer}/>
-              <UseReviews reviews = {reviews}/>
+              <UserReviews reviews = {reviews}/>
             </div>
           </div>
-          <section className="offer__map map">
-            <Map currentCity={offers[0].city} points = {offers.slice(0, 3)} activeCardId = {extendedOffer.id}/>
-          </section>
+          <Map currentCity={extendedOffer.city} points = {nearbyOffers.slice(0, 3)} activeCardId = {extendedOffer.id} className="offer"/>
         </section>
         <ContainerOffers offers = {offers.slice(0, 3)}/>
       </main>

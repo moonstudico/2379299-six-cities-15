@@ -2,7 +2,7 @@ import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
 import { useState } from 'react';
 import Map from '../../component/map';
-import { getOffersByCity } from '../../store/action';
+import { getOffers } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hock';
 
 type Props = {
@@ -13,9 +13,10 @@ type Props = {
 function ListComponents ({placeCount, offers}: Props): JSX.Element{
   const [activeCardId, setActiveCardId] = useState<string>();
   const dispatch = useAppDispatch();
-  dispatch(getOffersByCity(offers));
-  // const currentOffers = useAppSelector((state) => state.offers);
-  // console.log(currentOffers)
+  dispatch(getOffers(offers));
+  // const allOffers = useAppSelector((state) => state.offers);
+  const currentOffers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.currentCity));
+
   return(
     <div className="cities">
       <div className="cities__places-container container">
@@ -39,15 +40,12 @@ function ListComponents ({placeCount, offers}: Props): JSX.Element{
           </form>
           <div className="cities__places-list places__list tabs__content">
             {
-              offers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId}/>)
+              currentOffers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId} className="cities"/>)
             }
           </div>
         </section>
         <div className="cities__right-section">
-
-          <section className="cities__map map">
-            <Map currentCity={offers[0].city} points = {offers} activeCardId = {activeCardId}/>
-          </section>
+          <Map currentCity={currentOffers[0].city} points = {currentOffers} activeCardId = {activeCardId} className="cities" />
         </div>
       </div>
     </div>

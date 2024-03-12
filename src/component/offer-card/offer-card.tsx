@@ -4,9 +4,10 @@ import {Offer} from '../../types/offer';
 type Props = {
   offer: Offer;
   setActiveCardId?: (str: string) => void ;
+  className: string;
 }
 
-function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
+function OfferCard({offer, setActiveCardId, className }:Props): JSX.Element {
 
   const handleMouseEnter = () => {
     if(setActiveCardId){
@@ -28,7 +29,7 @@ function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
     <article
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="cities__card place-card"
+      className={`${className}__card place-card`}
     >
       {
         offer.isPremium ? (
@@ -37,7 +38,7 @@ function OfferCard({offer, setActiveCardId }:Props): JSX.Element {
           </div>
         ) : null
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <Link to={offerPath}>
           <img
 
