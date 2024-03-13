@@ -51,7 +51,7 @@ function ListComponents ({offers}: Props): JSX.Element {
           </form>
           <div className="cities__places-list places__list tabs__content">
             {
-              currentOffers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId} activeCardId={activeCardId} className="cities"/>)
+              currentOffers.map((offer) => <OfferCard offer={offer} key={offer.id} setActiveCardId={setActiveCardId} className="cities"/>)
             }
           </div>
         </section>
