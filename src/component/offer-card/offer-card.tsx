@@ -4,20 +4,20 @@ import {Offer} from '../../types/offer';
 type Props = {
   offer: Offer;
   setActiveCardId?: (str: string) => void ;
+  activeCardId?: string | undefined;
   className: string;
 }
 
-function OfferCard({offer, setActiveCardId, className }:Props): JSX.Element {
-
+function OfferCard({offer, setActiveCardId, className, activeCardId }:Props): JSX.Element {
+  const {rating, id, isPremium, previewImage, title, type} = offer;
+  const roundedRating = Math.round(rating);
   const handleMouseEnter = () => {
     if(setActiveCardId){
-      setActiveCardId(offer.id);
+      setActiveCardId(id);
     }
-
-    // 'place-card__bookmark-button--active' класс для фаворит
   };
 
-  const offerPath = `/offer/${offer.id}`;
+  const offerPath = `/offer/${id}`;
 
   const handleMouseLeave = () => {
     if(setActiveCardId){
@@ -32,7 +32,7 @@ function OfferCard({offer, setActiveCardId, className }:Props): JSX.Element {
       className={`${className}__card place-card`}
     >
       {
-        offer.isPremium ? (
+        isPremium ? (
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
@@ -43,7 +43,7 @@ function OfferCard({offer, setActiveCardId, className }:Props): JSX.Element {
           <img
 
             className="place-card__image"
-            src={offer.previewImage}
+            src={previewImage}
             width="260"
             height="200"
             alt="Place image"
@@ -56,7 +56,7 @@ function OfferCard({offer, setActiveCardId, className }:Props): JSX.Element {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className={`place-card__bookmark-button button ${ activeCardId === id ? 'place-card__bookmark-button--active' : ''}`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -65,14 +65,14 @@ function OfferCard({offer, setActiveCardId, className }:Props): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">Rating</span>
+            <span style={{width: `${roundedRating * 20}% `}}></span>
+            <span className="visually-hidden">{roundedRating}</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={offerPath}>{offer.title}</Link>
+          <Link to={offerPath}>{title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

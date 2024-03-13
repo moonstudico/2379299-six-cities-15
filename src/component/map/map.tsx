@@ -13,7 +13,9 @@ type Props = {
   className: string;
 }
 
+
 function Map({currentCity, points, activeCardId, className}: Props) {
+
   const mapRef = useRef<HTMLDivElement>(null);
   const map = useMap(mapRef, currentCity);
 
@@ -38,8 +40,9 @@ function Map({currentCity, points, activeCardId, className}: Props) {
     if (map) {
       map.setView([currentCity.location.latitude, currentCity.location.longitude], currentCity.location.zoom);
       markerLayer.current.addTo(map);
+      const currentMarkerLayer = markerLayer.current;
       return () => {
-        markerLayer.current.remove();
+        currentMarkerLayer.remove();
       };
     }
   }, [map, currentCity]);
