@@ -1,20 +1,37 @@
 import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Map from '../../component/map';
 import { getOffers } from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hock';
+import Sort from './sort';
 
 type Props = {
   offers: Offer[];
 }
 
-function ListComponents ({offers}: Props): JSX.Element{
-  const [activeCardId, setActiveCardId] = useState<string>();
+function ListComponents ({offers}: Props): JSX.Element {
   const dispatch = useAppDispatch();
-  dispatch(getOffers(offers));
-  // const allOffers = useAppSelector((state) => state.offers);
+  useEffect(() => {
+    dispatch(getOffers(offers));
+  }, [offers, dispatch]);
+
+  const [activeCardId, setActiveCardId] = useState<string>();
+  const [activeOfferSort, setSort] = useState<string>();
   const currentOffers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.currentCity));
+  switch (activeOfferSort) {
+    case 'low to high':
+      currentOffers.sort((a, b) => a.price - b.price);
+      break;
+    case 'high to low':
+      currentOffers.sort((a, b) => b.price - a.price);
+      break;
+    case 'Top rated first':
+      currentOffers.sort((a, b) => b.rating - a.rating);
+      break;
+    default:
+      break;
+  }
 
   return(
     <div className="cities">
@@ -30,12 +47,7 @@ function ListComponents ({offers}: Props): JSX.Element{
                 <use xlinkHref="#icon-arrow-select"></use>
               </svg>
             </span>
-            <ul className="places__options places__options--custom places__options--opened">
-              <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-              <li className="places__option" tabIndex={0}>Price: low to high</li>
-              <li className="places__option" tabIndex={0}>Price: high to low</li>
-              <li className="places__option" tabIndex={0}>Top rated first</li>
-            </ul>
+            <Sort setSort={setSort} />
           </form>
           <div className="cities__places-list places__list tabs__content">
             {
@@ -44,7 +56,11 @@ function ListComponents ({offers}: Props): JSX.Element{
           </div>
         </section>
         <div className="cities__right-section">
-          <Map currentCity={currentOffers[0].city} points = {currentOffers} activeCardId = {activeCardId} className="cities" />
+          {
+            currentOffers[0]?.city &&
+            <Map currentCity={currentOffers[0].city} points={currentOffers} activeCardId={activeCardId} className="cities" />
+          }
+
         </div>
       </div>
     </div>

@@ -137,7 +137,7 @@ const offers: Offer[] = [
     },
     isFavorite: false,
     isPremium: false,
-    rating: 4.8
+    rating: 1
   },
   {
     id: '8dd0cb60-1a02-418c-8f44-4340ae57c8f4',
