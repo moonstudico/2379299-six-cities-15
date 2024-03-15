@@ -11,4 +11,9 @@ export enum AuthorizationStatus{
   Unknown = 'UNKNOWN'
 }
 
-
+export enum SortType{
+  Default = 'Popular',
+  PriceLow = 'Price: low to high',
+  PriceHigh = 'Price: high to low',
+  TopRated = 'Top rated first'
+}

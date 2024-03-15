@@ -11,6 +11,9 @@ import {getAuthorizationStatus} from '../../mocks.ts';
 import {Offer} from '../../types/offer.ts';
 import { City } from '../../types/city.ts';
 import { Review } from '../../types/review.ts';
+import { useEffect } from 'react';
+import { getOffers } from '../../store/action.ts';
+import { useAppDispatch } from '../../hock/index.ts';
 
 type AppProps = {
   offers: Offer[];
@@ -19,6 +22,11 @@ type AppProps = {
   reviews: Review[];
 }
 function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getOffers(offers));
+  }, [offers, dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -27,7 +35,6 @@ function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
             path={AppRoute.Main}
             element={
               <MainPage
-                offers = {offers}
                 cities = {cities}
               />
             }
