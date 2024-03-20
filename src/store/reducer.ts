@@ -7,7 +7,7 @@ import { AuthorizationStatus } from '../const';
 const initialState: {
   currentCity: string;
   offers: Offer[];
-  authorizationStatus: string;
+  authorizationStatus: AuthorizationStatus;
   error: null | string;
   isOffersDataLoading: boolean;
 

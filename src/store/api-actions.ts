@@ -20,14 +20,12 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
-
-
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'сities/getOffers',
+  'data/fetchOffers',
   async(_arg, {dispatch, extra: api}) => {
     dispatch(setOffersDataLoadingStatus(true));
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
@@ -44,7 +42,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   'user/checkAuth',
   async(_arg, {dispatch, extra: api}) => {
     try{
-      await api.get(APIRoute.Login)
+      await api.get(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
     }catch{
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));

@@ -11,9 +11,7 @@ import {getAuthorizationStatus} from '../../mocks.ts';
 import {Offer} from '../../types/offer.ts';
 import { City } from '../../types/city.ts';
 import { Review } from '../../types/review.ts';
-import { useEffect } from 'react';
-import { getOffers } from '../../store/action.ts';
-import { useAppDispatch, useAppSelector } from '../../hock/index.ts';
+import { useAppSelector } from '../../hock/index.ts';
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 
 type AppProps = {
@@ -26,11 +24,6 @@ function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
-
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(getOffers(offers));
-  }, [offers, dispatch]);
 
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
