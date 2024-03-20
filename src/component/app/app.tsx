@@ -7,7 +7,6 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import PrivateRoute from '../../component/private-route';
 import Layout from '../layout';
-import {getAuthorizationStatus} from '../../mocks.ts';
 import {Offer} from '../../types/offer.ts';
 import { City } from '../../types/city.ts';
 import { Review } from '../../types/review.ts';
@@ -48,7 +47,7 @@ function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
             path={AppRoute.Login}
             element={
               <PrivateRoute
-                authorizationStatus={getAuthorizationStatus()} isReverse
+                authorizationStatus={authorizationStatus} isReverse
               >
                 <Login />
               </PrivateRoute>
@@ -58,7 +57,7 @@ function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={getAuthorizationStatus()}
+                authorizationStatus={authorizationStatus}
               >
                 <Favorites
                   favorites = {favorites}
