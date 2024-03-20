@@ -1,32 +1,24 @@
+import { SortType } from '../../const';
 
 type Props = {
-  setSort: (str: string) => void ;
+  setSort: (str: SortType) => void ;
+  activeOfferSort: SortType;
+  isFilter: boolean;
 }
 
-function Sort ({setSort}: Props): JSX.Element{
+function Sort ({setSort, activeOfferSort, isFilter}: Props): JSX.Element{
 
   return(
-    <ul className="places__options places__options--custom places__options--opened">
-      <li className="places__option places__option--active" tabIndex={0}>Popular
-      </li>
-      <li
-        className="places__option"
-        tabIndex={0}
-        onClick={() => setSort('low to high')}
-      >Price: low to high
-      </li>
-      <li
-        className="places__option"
-        tabIndex={0}
-        onClick={() => setSort('high to low')}
-      >Price: high to low
-      </li>
-      <li
-        className="places__option"
-        tabIndex={0}
-        onClick={() => setSort('Top rated first')}
-      >Top rated first
-      </li>
+    <ul className={`places__options places__options--custom ${isFilter ? 'places__options--opened' : 'places__options--closed'}`}>
+      {Object.values(SortType).map((sortType) => (
+        <li
+          key={sortType}
+          className={`places__option ${sortType === activeOfferSort ? 'places__option--active' : ''}`}
+          tabIndex={0}
+          onClick={() => setSort(sortType)}
+        >{sortType}
+        </li>
+      ))}
     </ul>
   );
 }

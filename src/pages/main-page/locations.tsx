@@ -1,3 +1,4 @@
+import { SortType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hock';
 import { changeCity } from '../../store/action';
 import { City } from '../../types/city';
@@ -5,9 +6,10 @@ import { Link } from 'react-router-dom';
 
 type Props = {
   cities: City [];
+  setSort: (str: SortType) => void ;
 }
 
-function Locations({cities}: Props): JSX.Element {
+function Locations({cities, setSort}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector((state) => state.currentCity);
 
@@ -22,6 +24,7 @@ function Locations({cities}: Props): JSX.Element {
                   <span
                     onClick={() =>{
                       dispatch(changeCity(city));
+                      setSort(SortType.Default);
                     }}
 
                   >{city}
