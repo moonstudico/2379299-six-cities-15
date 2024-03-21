@@ -12,7 +12,7 @@ import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
 import { fetchOfferIdAction } from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { store } from '../../store';
+
 import { useEffect } from 'react';
 
 
