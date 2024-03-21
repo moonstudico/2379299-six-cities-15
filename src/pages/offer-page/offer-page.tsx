@@ -5,10 +5,15 @@ import ContainerOffers from './container-offers';
 import GaleriContaner from './galeri-contaner';
 import { useParams } from 'react-router-dom';
 import {Navigate} from 'react-router-dom';
-import { getOfferById, getNearbyOffers } from '../../mocks/extended-offer';
+import { getNearbyOffers } from '../../mocks/extended-offer';
 import OfferInside from './offer-inside';
 import { Offer } from '../../types/offer';
 import Map from '../../component/map';
+import { useAppDispatch, useAppSelector } from '../../hock';
+import { fetchOfferIdAction } from '../../store/api-actions';
+import LoadingScreen from '../loading-screen/loading-screen';
+import { store } from '../../store';
+import { useEffect } from 'react';
 
 
 type Props = {
@@ -17,9 +22,28 @@ type Props = {
 }
 
 function OfferPage({reviews, offers}: Props): JSX.Element {
-
   const { id } = useParams<{ id: string }>();
-  const extendedOffer = getOfferById(id);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchOfferIdAction(id));
+    }
+  }, [id, dispatch]);
+
+  const extendedOffer = useAppSelector((state) => {
+    console.log('state --->', state);
+    return state.offer;
+  });
+
+
+  // const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  // if (extendedOffer === null || isOffersDataLoading) {
+  //   return (
+  //     <LoadingScreen />
+  //   );
+
+  // }
+
   const nearbyOffers = getNearbyOffers(id);
   //   const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffers.concat(extendedOffer);
 
