@@ -6,10 +6,12 @@ export const changeCity = createAction<string>('сities/changeCity');
 
 export const getOffers = createAction<Offer[]>('сities/getOffers');
 
-export const getOfferId = createAction<Offer>('сities/getOfferId');
+export const getOfferId = createAction<Offer | null>('сities/getOfferId');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAvtorization');
 
 export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');
+
+export const setOfferLoadingStatus = createAction<boolean>('data/setOfferLoadingStatus');
 
 export const setError = createAction<string | null>('сities/setError');

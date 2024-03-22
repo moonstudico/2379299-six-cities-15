@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, getOfferId, requireAuthorization, setError, setOffersDataLoadingStatus } from './action';
+import { changeCity, getOfferId, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
 import { getOffers} from './action';
 import { Offer } from '../types/offer';
 import { AuthorizationStatus } from '../const';
@@ -11,6 +11,7 @@ const initialState: {
   authorizationStatus: AuthorizationStatus;
   error: null | string;
   isOffersDataLoading: boolean;
+  isOfferLoadingStatus: boolean;
 
 } = {
   currentCity: 'Paris',
@@ -18,7 +19,8 @@ const initialState: {
   offer: null,
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
-  isOffersDataLoading: false
+  isOffersDataLoading: false,
+  isOfferLoadingStatus: true
 
 };
 
@@ -31,7 +33,6 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = payload;
     })
     .addCase(getOfferId, (state, {payload}) => {
-      console.log('statepayload', payload)
       state.offer = payload;
     })
     .addCase(requireAuthorization, (state, {payload}) => {
@@ -42,6 +43,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
       state.isOffersDataLoading = payload;
+    })
+    .addCase(setOfferLoadingStatus, (state, {payload}) => {
+      state.isOfferLoadingStatus = payload;
     });
 });
 export {reducer, getOffers};
