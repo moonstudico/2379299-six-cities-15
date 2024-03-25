@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './component/app';
-import {offers} from './mocks/offers';
 import {favorites} from './mocks/favorites';
 import { cities } from './mocks/cities';
-import { reviews } from './mocks/reviews';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import ErrorMessage from './component/error-message/error-message';
@@ -23,10 +21,8 @@ root.render(
     <Provider store={store}>
       <ErrorMessage />
       <App
-        offers = {offers}
         favorites = {favorites}
         cities = {cities}
-        reviews = {reviews}
       />
     </Provider>
 

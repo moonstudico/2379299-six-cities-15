@@ -9,17 +9,14 @@ import PrivateRoute from '../../component/private-route';
 import Layout from '../layout';
 import {Offer} from '../../types/offer.ts';
 import { City } from '../../types/city.ts';
-import { Review } from '../../types/review.ts';
 import { useAppSelector } from '../../hock/index.ts';
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 
 type AppProps = {
-  offers: Offer[];
   favorites: Offer[];
   cities: City[];
-  reviews: Review[];
 }
-function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
+function App ({favorites, cities}: AppProps): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
@@ -69,10 +66,7 @@ function App ({offers, favorites, cities, reviews}: AppProps): JSX.Element {
           <Route
             path={AppRoute.Offer}
             element={
-              <OfferPage
-                reviews = {reviews}
-                offers = {offers}
-              />
+              <OfferPage />
             }
           />
           <Route
