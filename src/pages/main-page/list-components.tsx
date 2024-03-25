@@ -59,7 +59,6 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
             sortedOffers[0]?.city &&
             <Map currentCity={sortedOffers[0].city} points={sortedOffers} activeCardId={activeCardId} className="cities" />
           }
-
         </div>
       </div>
     </div>

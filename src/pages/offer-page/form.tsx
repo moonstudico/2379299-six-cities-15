@@ -1,8 +1,24 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { saveReviewAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hock';
 
-function Form () : JSX.Element {
+type Props = {
+  id: string | undefined;
+}
+
+function Form({id}: Props): JSX.Element {
   const [comment, setCommet] = useState('');
   const [rating, setRating] = useState<number>();
+  const dispatch = useAppDispatch();
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    dispatch(saveReviewAction({
+      comment: comment,
+      id: id,
+      rating: rating
+    }));
+  };
+
 
   const handleCommentChange = (evt : ChangeEvent<HTMLTextAreaElement>) => {
     const {value} = evt.target;
@@ -14,7 +30,12 @@ function Form () : JSX.Element {
   };
 
   return(
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={handleSubmit}
+    >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating" >
         {
@@ -50,7 +71,7 @@ function Form () : JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit"  >Submit</button>
       </div>
     </form>
   );

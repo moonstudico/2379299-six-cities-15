@@ -1,40 +1,31 @@
-import { Review } from '../../types/review';
 import Host from './host';
 import UserReviews from './user-reviews';
 import ContainerOffers from './container-offers';
 import GaleriContaner from './galeri-contaner';
 import { useParams } from 'react-router-dom';
 import {Navigate} from 'react-router-dom';
-import { getNearbyOffers } from '../../mocks/extended-offer';
 import OfferInside from './offer-inside';
-import { Offer } from '../../types/offer';
 import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
-import { fetchOfferIdAction } from '../../store/api-actions';
+import { fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction } from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
 
 
-type Props = {
-  reviews: Review[];
-  offers: Offer[];
-}
-
-function OfferPage({reviews, offers}: Props): JSX.Element {
+function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (id) {
       dispatch(fetchOfferIdAction(id));
+      dispatch(fetchNearbyOffersAction(id));
+      dispatch(fetchReviewsOffersAction(id));
     }
   }, [id, dispatch]);
 
   const extendedOffer = useAppSelector((state) => state.offer);
-
-  const nearbyOffers = getNearbyOffers(id);
-  //   const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffers.concat(extendedOffer);
-
-
+  const nearbyOffer = useAppSelector((state) => state.nearbyOffers);
+  const reviews = useAppSelector((state) => state.reviews);
   const isOfferLoading = useAppSelector((state) => state.isOfferLoadingStatus);
   if (isOfferLoading) {
     return <LoadingScreen />;
@@ -97,12 +88,12 @@ function OfferPage({reviews, offers}: Props): JSX.Element {
             </div>
             <OfferInside extendedOffer = {extendedOffer}/>
             <Host extendedOffer = {extendedOffer}/>
-            <UserReviews reviews = {reviews}/>
+            <UserReviews reviews = {reviews} id = {id}/>
           </div>
         </div>
-        <Map currentCity={extendedOffer.city} points = {nearbyOffers.slice(0, 3)} activeCardId = {extendedOffer.id} className="offer"/>
+        <Map currentCity={extendedOffer.city} points = {nearbyOffer.slice(0, 3)} activeCardId = {extendedOffer.id} className="offer"/>
       </section>
-      <ContainerOffers offers = {offers.slice(0, 3)}/>
+      <ContainerOffers offers = {nearbyOffer.slice(0, 3)}/>
     </main>
   );
 }
