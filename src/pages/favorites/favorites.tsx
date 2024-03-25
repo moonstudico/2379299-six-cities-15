@@ -1,13 +1,15 @@
-import { Offer } from '../../types/offer';
-import { City } from '../../types/city';
 import FavoritesCity from '../favorites/favorites-city';
+import { store } from '../../store';
+import { fetchFavoritesOffersAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hock';
+import { City } from '../../types/city';
 
-type Props = {
-  favorites: Offer[];
-  cities: City[];
-}
+store.dispatch(fetchFavoritesOffersAction());
 
-function Favorites({favorites, cities}: Props): JSX.Element {
+function Favorites(): JSX.Element {
+
+  const favorites = useAppSelector((state) => state.favoritesOffers);
+  const uniqueCities = [...new Set(favorites.map((favorite) => favorite.city.name))];
 
   return (
     <main className="page__main page__main--favorites">
@@ -15,7 +17,7 @@ function Favorites({favorites, cities}: Props): JSX.Element {
         <section className="favorites">
           <h1 className="favorites__title">Saved listing</h1>
           <ul className="favorites__list">{
-            cities.map((city) => (<FavoritesCity favorites={favorites} city={city} key={city} />))
+            uniqueCities.map((city) => (<FavoritesCity favorites={favorites} city={city as City} key={city} />))
           }
           </ul>
         </section>

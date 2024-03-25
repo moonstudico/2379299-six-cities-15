@@ -1,6 +1,8 @@
 import Form from './form';
 import { Review } from '../../types/review';
 import ReviewsItem from './reviews-item';
+import { useAppSelector } from '../../hock';
+import { AuthorizationStatus } from '../../const';
 
 type Props = {
   reviews: Review[];
@@ -8,6 +10,7 @@ type Props = {
 }
 
 function UserReviews ({reviews, id}: Props): JSX.Element{
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return(
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
@@ -16,7 +19,9 @@ function UserReviews ({reviews, id}: Props): JSX.Element{
           reviews.map((review) => <ReviewsItem review={review} key = {review.id}/>)
         }
       </ul>
-      <Form id = {id}/>
+      {
+        authorizationStatus === AuthorizationStatus.Auth && <Form id = {id}/>
+      }
     </section>
   );
 }

@@ -7,9 +7,15 @@ import {Navigate} from 'react-router-dom';
 import OfferInside from './offer-inside';
 import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
-import { fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction } from '../../store/api-actions';
+import { fetchFavoritesOffersAction, fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction } from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
+
+
+
+
+
+
 
 
 function OfferPage(): JSX.Element {
@@ -20,13 +26,20 @@ function OfferPage(): JSX.Element {
       dispatch(fetchOfferIdAction(id));
       dispatch(fetchNearbyOffersAction(id));
       dispatch(fetchReviewsOffersAction(id));
+      dispatch(fetchFavoritesOffersAction());
     }
   }, [id, dispatch]);
+
 
   const extendedOffer = useAppSelector((state) => state.offer);
   const nearbyOffer = useAppSelector((state) => state.nearbyOffers);
   const reviews = useAppSelector((state) => state.reviews);
   const isOfferLoading = useAppSelector((state) => state.isOfferLoadingStatus);
+
+  const wwwwwwwwww = useAppSelector((state) => state.offers);
+  console.log(777777777777, wwwwwwwwww)
+
+
   if (isOfferLoading) {
     return <LoadingScreen />;
   }

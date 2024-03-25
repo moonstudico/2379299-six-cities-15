@@ -1,5 +1,8 @@
 import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offer';
+import { store } from '../../store';
+import { saveFavoritesOffersAction } from '../../store/api-actions';
+import { useState } from 'react';
 
 type Props = {
   offer: Offer;
@@ -8,7 +11,18 @@ type Props = {
 }
 
 function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
-  const {rating, id, isPremium, previewImage, title, type} = offer;
+  const [currentOffers, setcurrentOffers] = useState<Offer>(offer);
+
+  const handleFavoriteClick = () => {
+    store.dispatch(saveFavoritesOffersAction({
+      id: offer.id,
+      isFavorite: offer.isFavorite ? 0 : 1
+    }));
+    setcurrentOffers({...currentOffers, isFavorite: !currentOffers.isFavorite});
+  };
+
+
+  const {rating, id, isPremium, previewImage, title, type, isFavorite, price} = currentOffers;
   const roundedRating = Math.round(rating);
   const handleMouseEnter = () => {
     if(setActiveCardId){
@@ -40,7 +54,6 @@ function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
       <div className={`${className}__image-wrapper place-card__image-wrapper`}>
         <Link to={offerPath}>
           <img
-
             className="place-card__image"
             src={previewImage}
             width="260"
@@ -52,10 +65,14 @@ function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{offer.price}</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : '' }`}
+            type="button"
+            onClick={handleFavoriteClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
