@@ -3,6 +3,7 @@ import { Review } from '../../types/review';
 import ReviewsItem from './reviews-item';
 import { useAppSelector } from '../../hock';
 import { AuthorizationStatus } from '../../const';
+import { memo } from 'react';
 
 type Props = {
   reviews: Review[];
@@ -26,4 +27,4 @@ function UserReviews ({reviews, id}: Props): JSX.Element{
   );
 }
 
-export default UserReviews;
+export default memo(UserReviews);

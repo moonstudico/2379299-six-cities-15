@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { SortType } from '../../const';
 
 type Props = {
@@ -29,4 +30,4 @@ function Sort ({setSort, activeOfferSort, isFilter, setFilter}: Props): JSX.Elem
   );
 }
 
-export default Sort;
+export default memo(Sort);

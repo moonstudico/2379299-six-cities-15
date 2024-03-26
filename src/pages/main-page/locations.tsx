@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { SortType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hock';
 import { changeCity } from '../../store/action';
@@ -39,5 +40,5 @@ function Locations({cities, setSort}: Props): JSX.Element {
   );
 }
 
-export default Locations;
+export default memo(Locations);
 

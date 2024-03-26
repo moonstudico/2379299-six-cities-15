@@ -36,9 +36,6 @@ function OfferPage(): JSX.Element {
   const reviews = useAppSelector((state) => state.reviews);
   const isOfferLoading = useAppSelector((state) => state.isOfferLoadingStatus);
 
-  const wwwwwwwwww = useAppSelector((state) => state.offers);
-  console.log(777777777777, wwwwwwwwww)
-
 
   if (isOfferLoading) {
     return <LoadingScreen />;
