@@ -26,6 +26,7 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
   const [isFilter, setFilter] = useState<boolean>(false);
   const handleMouseFilter = () =>{
     setFilter(!isFilter);
+
   };
 
   return(
@@ -46,7 +47,7 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
                 <use xlinkHref="#icon-arrow-select"></use>
               </svg>
             </span>
-            <Sort setSort={setSort} activeOfferSort={activeOfferSort} isFilter={isFilter}/>
+            <Sort setSort={setSort} activeOfferSort={activeOfferSort} isFilter={isFilter} setFilter={setFilter}/>
           </form>
           <div className="cities__places-list places__list tabs__content">
             {
