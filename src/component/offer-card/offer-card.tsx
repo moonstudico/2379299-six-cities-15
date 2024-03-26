@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import { store } from '../../store';
 import { saveFavoritesOffersAction } from '../../store/api-actions';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 type Props = {
   offer: Offer;
@@ -94,4 +94,4 @@ function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
   );
 }
 
-export default OfferCard;
+export default memo( OfferCard );
