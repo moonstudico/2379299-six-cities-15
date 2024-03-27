@@ -12,10 +12,6 @@ import { City } from '../../types/city.ts';
 import { useAppSelector } from '../../hock/index.ts';
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 
-type AppProps = {
-  favorites: Offer[];
-  cities: City[];
-}
 function App ({favorites, cities}: AppProps): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
@@ -35,9 +31,7 @@ function App ({favorites, cities}: AppProps): JSX.Element {
           <Route
             path={AppRoute.Main}
             element={
-              <MainPage
-                cities = {cities}
-              />
+              <MainPage />
             }
           />
           <Route
