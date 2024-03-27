@@ -1,6 +1,10 @@
 import {AppRoute} from '../../const';
+import { store } from '../../store';
 
 const getLayoutState = (pathname:AppRoute) => {
+  const state = store.getState();
+  const favorites = state.favoritesOffers;
+
   let rootClassName = '';
   let linkClassName = '';
   let showUser = true;
@@ -14,6 +18,7 @@ const getLayoutState = (pathname:AppRoute) => {
     rootClassName = 'page--gray page--login';
     showUser = false;
   } else if(pathname === AppRoute.Favorites) {
+    rootClassName = favorites.length > 0 ? '' : 'page--favorites-empty';
     showFooter = true;
   }
 
