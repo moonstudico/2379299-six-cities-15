@@ -11,9 +11,15 @@ function Layout(){
   const {rootClassName, linkClassName, showUser, showFooter} = getLayoutState (pathname as AppRoute);
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const countFavorite = useAppSelector((state) => state.favoritesOffers);
+  const userData = useAppSelector((state) => state.userData);
 
   const handleClick = () => {
     store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+  };
+
+  const divStyle = {
+    backgroundImage: `url(${userData?.avatarUrl})`,
+    borderRadius: '50%',
   };
 
   return(
@@ -32,14 +38,14 @@ function Layout(){
                   <ul className="header__nav-list">
                     <li className="header__nav-item user">
                       <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        <div className="header__avatar-wrapper user__avatar-wrapper" style={divStyle}>
                         </div>
                         {
                           authorizationStatus === AuthorizationStatus.NoAuth ?
                             (<span className="header__login">Sign in</span>)
                             : (
                               <>
-                                <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                                <span className="header__user-name user__name">{userData?.email}</span>
                                 <span className="header__favorite-count">{countFavorite.length}</span>
                               </>
                             )

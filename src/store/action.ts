@@ -3,6 +3,7 @@ import { Offer } from '../types/offer';
 import { AuthorizationStatus } from '../const';
 import { ExtendedOffer } from '../types/extended offer';
 import { Review } from '../types/review';
+import { UserData } from '../types/user-data';
 
 export const changeCity = createAction<string>('сities/changeCity');
 
@@ -15,6 +16,8 @@ export const getNearbyOffers = createAction<Offer[]>('сities/getNearbyOffers');
 export const getFavoritesOffers = createAction<Offer[]>('сities/getFavoritesOffers');
 
 export const getReviews = createAction<Review[]>('сities/getReviews ');
+
+export const getUserData = createAction<UserData>('getUserData ');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAvtorization');
 
