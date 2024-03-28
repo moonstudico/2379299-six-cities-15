@@ -3,7 +3,7 @@ import UserReviews from './user-reviews';
 import ContainerOffers from './container-offers';
 import GaleriContaner from './galeri-contaner';
 import { useParams } from 'react-router-dom';
-import {Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import OfferInside from './offer-inside';
 import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
