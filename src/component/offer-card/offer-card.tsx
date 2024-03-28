@@ -3,6 +3,7 @@ import {Offer} from '../../types/offer';
 import { store } from '../../store';
 import { saveFavoritesOffersAction } from '../../store/api-actions';
 import { memo, useState } from 'react';
+import { useAppSelector } from '../../hock';
 
 type Props = {
   offer: Offer;
@@ -19,8 +20,10 @@ function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
       isFavorite: offer.isFavorite ? 0 : 1
     }));
     setcurrentOffers({...currentOffers, isFavorite: !currentOffers.isFavorite});
-  };
 
+  };
+  const favorites = useAppSelector((state) => state.favoritesOffers);
+  console.log('count offers fav',favorites)
 
   const {rating, id, isPremium, previewImage, title, type, isFavorite, price} = currentOffers;
   const roundedRating = Math.round(rating);

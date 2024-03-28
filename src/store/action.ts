@@ -9,6 +9,8 @@ export const changeCity = createAction<string>('сities/changeCity');
 
 export const getOffers = createAction<Offer[]>('сities/getOffers');
 
+export const changeOffer = createAction<Offer>('сities/getOffers');
+
 export const getOfferId = createAction<ExtendedOffer | null>('сities/getOfferId');
 
 export const getNearbyOffers = createAction<Offer[]>('сities/getNearbyOffers');

@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeCity, getFavoritesOffers, getNearbyOffers, getOfferId, getReviews, getUserData, requireAuthorization, setError, setNearbyOffersLoadingStatus, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
+import { changeCity, changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getReviews, getUserData, requireAuthorization, setError, setNearbyOffersLoadingStatus, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
 import { getOffers} from './action';
 import { Offer } from '../types/offer';
 import { AuthorizationStatus } from '../const';
@@ -44,6 +44,14 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(getOffers, (state, {payload}) => {
       state.offers = payload;
     })
+    // .addCase(changeOffer, (state, {payload}) => {
+    //   state.offers.map((offer) => {
+    //     if (offer.id === payload.id){
+    //       return payload;
+    //     }
+    //     return offer;
+    //   });
+    // })
     .addCase(getOfferId, (state, {payload}) => {
       state.offer = payload;
     })

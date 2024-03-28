@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { getFavoritesOffers, getNearbyOffers, getOfferId, getOffers, getReviews, getUserData, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
+import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers, getReviews, getUserData, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -83,8 +83,12 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
 }>(
   'user/saveFavoritesOffers',
   async ({id, isFavorite}, {dispatch, extra: api}) => {
-    await api.post<UserReview>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
-    dispatch(fetchFavoritesOffersAction());
+    console.log('isFavorite status',isFavorite)
+    const (www: {data} )= await api.post<UserReview>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
+    console.log(1111111, data );
+    // dispatch(changeOffer(www.data ))
+
+     dispatch(fetchFavoritesOffersAction());
   },
 );
 
