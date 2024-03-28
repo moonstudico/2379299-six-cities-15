@@ -84,7 +84,7 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
   'user/saveFavoritesOffers',
   async ({id, isFavorite}, {dispatch, extra: api}) => {
     console.log('isFavorite status',isFavorite)
-    const (www: {data} )= await api.post<UserReview>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
+    const (www: {data} ) = await api.post<UserReview>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
     console.log(1111111, data );
     // dispatch(changeOffer(www.data ))
 
