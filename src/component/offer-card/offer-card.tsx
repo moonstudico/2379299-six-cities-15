@@ -3,7 +3,6 @@ import {Offer} from '../../types/offer';
 import { store } from '../../store';
 import { saveFavoritesOffersAction } from '../../store/api-actions';
 import { memo, useState } from 'react';
-import { useAppSelector } from '../../hock';
 
 type Props = {
   offer: Offer;
@@ -11,7 +10,7 @@ type Props = {
   className: string;
 }
 
-function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
+function OfferCardRew({offer, setActiveCardId, className}:Props): JSX.Element {
   const [currentOffers, setcurrentOffers] = useState<Offer>(offer);
 
   const handleFavoriteClick = () => {
@@ -22,8 +21,6 @@ function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
     setcurrentOffers({...currentOffers, isFavorite: !currentOffers.isFavorite});
 
   };
-  const favorites = useAppSelector((state) => state.favoritesOffers);
-  console.log('count offers fav',favorites)
 
   const {rating, id, isPremium, previewImage, title, type, isFavorite, price} = currentOffers;
   const roundedRating = Math.round(rating);
@@ -97,4 +94,5 @@ function OfferCard({offer, setActiveCardId, className}:Props): JSX.Element {
   );
 }
 
-export default memo( OfferCard );
+const OfferCard = memo(OfferCardRew);
+export default OfferCard;

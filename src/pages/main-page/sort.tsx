@@ -8,7 +8,7 @@ type Props = {
   setFilter: (str: boolean) => void;
 }
 
-function Sort ({setSort, activeOfferSort, isFilter, setFilter}: Props): JSX.Element{
+function SortRew ({setSort, activeOfferSort, isFilter, setFilter}: Props): JSX.Element{
 
   return(
     <ul className={`places__options places__options--custom ${isFilter ? 'places__options--opened' : 'places__options--closed'}`}>
@@ -29,5 +29,5 @@ function Sort ({setSort, activeOfferSort, isFilter, setFilter}: Props): JSX.Elem
     </ul>
   );
 }
-
-export default memo(Sort);
+const Sort = memo(SortRew);
+export default Sort;

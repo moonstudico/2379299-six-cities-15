@@ -44,6 +44,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(getOffers, (state, {payload}) => {
       state.offers = payload;
     })
+    // changeExtendedOffer
     .addCase(changeOffer, (state, {payload}) => {
       state.offers = state.offers.map((offer) => {
         if (offer.id === payload.id){

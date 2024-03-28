@@ -5,7 +5,7 @@ type Props = {
   extendedOffer: ExtendedOffer;
 }
 
-function Host({extendedOffer}: Props): JSX.Element {
+function HostRew({extendedOffer}: Props): JSX.Element {
 
   const {isPremium, host, description } = extendedOffer;
   return(
@@ -34,5 +34,5 @@ function Host({extendedOffer}: Props): JSX.Element {
     </div>
   );
 }
-
-export default memo(Host);
+const Host = memo(HostRew);
+export default Host;

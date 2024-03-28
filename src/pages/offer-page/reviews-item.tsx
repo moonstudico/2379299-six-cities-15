@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import { Review } from '../../types/review';
 
 type Props = {
   review: Review;
 }
 
-function ReviewsItem({review}: Props): JSX.Element {
+function ReviewsItemRew({review}: Props): JSX.Element {
   const {comment, rating, user, date} = review;
   const roundedRating = Math.round(rating);
   return(
@@ -32,5 +33,5 @@ function ReviewsItem({review}: Props): JSX.Element {
     </li>
   );
 }
-
+const ReviewsItem = memo(ReviewsItemRew);
 export default ReviewsItem;

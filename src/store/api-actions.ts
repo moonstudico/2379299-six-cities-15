@@ -89,6 +89,20 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
   },
 );
 
+export const saveFavoritesExtendedOfferAction = createAsyncThunk<void, StatusFavorite, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/saveFavoritesExtendedOffer',
+  async ({id, isFavorite}, {dispatch, extra: api}) => {
+    const {data} = await api.post<ExtendedOffer>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
+    dispatch(getOfferId(data));
+    dispatch(fetchFavoritesOffersAction());
+  },
+);
+
+
 export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;

@@ -7,12 +7,10 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import PrivateRoute from '../../component/private-route';
 import Layout from '../layout';
-import {Offer} from '../../types/offer.ts';
-import { City } from '../../types/city.ts';
 import { useAppSelector } from '../../hock/index.ts';
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 
-function App ({favorites, cities}: AppProps): JSX.Element {
+function App (): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
@@ -50,10 +48,7 @@ function App ({favorites, cities}: AppProps): JSX.Element {
               <PrivateRoute
                 authorizationStatus={authorizationStatus}
               >
-                <Favorites
-                  favorites = {favorites}
-                  cities = {cities}
-                />
+                <Favorites />
               </PrivateRoute>
             }
           />

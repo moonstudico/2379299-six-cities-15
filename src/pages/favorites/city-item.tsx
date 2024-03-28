@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/offer';
+import { saveFavoritesOffersAction } from '../../store/api-actions';
+import { store } from '../../store';
 
 type Props = {
   favorit: Offer;
 }
 
 function CityItem({favorit}: Props):JSX.Element{
+
+  const handleFavoriteClick = () => {
+    store.dispatch(saveFavoritesOffersAction({
+      id: favorit.id,
+      isFavorite: favorit.isFavorite ? 0 : 1
+    }));
+  };
+
   const offerPath = `/offer/${favorit.id}`;
   return(
     <article className="favorites__card place-card">
@@ -28,8 +38,9 @@ function CityItem({favorit}: Props):JSX.Element{
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className="place-card__bookmark-button place-card__bookmark-button--active button" type="button"
-
+            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            type="button"
+            onClick={handleFavoriteClick}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
