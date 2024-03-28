@@ -10,11 +10,11 @@ type Props = {
 
 function FavoritesCity({favorites, city}: Props): JSX.Element | null {
 
-  const favoritesCity = favorites.filter((favorit) => favorit.city.name === city);
+  const currentFavorites = favorites.filter((favorite) => favorite.city.name === city);
 
   return (
 
-    (favoritesCity.length > 0) ? (
+    (favorites.length > 0) ? (
       <li className="favorites__locations-items">
         <div className="favorites__locations locations locations--current">
           <div className="locations__item">
@@ -25,8 +25,7 @@ function FavoritesCity({favorites, city}: Props): JSX.Element | null {
         </div>
         <div className="favorites__places">
           {
-            favoritesCity.map((favorit) => <CityItem favorit = {favorit} key = {favorit.id}/>)
-
+            currentFavorites.map((favorit) => <CityItem favorit = {favorit} key = {favorit.id}/>)
           }
         </div>
       </li>

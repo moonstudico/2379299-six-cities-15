@@ -7,22 +7,26 @@ type Props = {
 }
 
 function Form({id}: Props): JSX.Element {
-  const [comment, setCommet] = useState('');
+  const [comment, setComment] = useState('');
   const [rating, setRating] = useState<number>();
   const dispatch = useAppDispatch();
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(saveReviewAction({
-      comment: comment,
-      id: id,
-      rating: rating
-    }));
+    if (id && rating) {
+      dispatch(saveReviewAction({
+        comment: comment,
+        id: id,
+        rating: rating
+      }));
+    }
+    setComment('');
+    setRating(undefined);
   };
 
 
   const handleCommentChange = (evt : ChangeEvent<HTMLTextAreaElement>) => {
     const {value} = evt.target;
-    setCommet(value);
+    setComment(value);
   };
 
   const handleRatingChange = (value: number) => {
@@ -65,13 +69,16 @@ function Form({id}: Props): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleCommentChange}
+        maxLength={300}
+        minLength={50}
+        value={comment}
       >
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit"  >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!(comment.length >= 50 && comment.length <= 300 && rating && rating > 0)} >Submit</button>
       </div>
     </form>
   );

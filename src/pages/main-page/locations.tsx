@@ -1,15 +1,15 @@
+import { memo } from 'react';
 import { SortType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hock';
 import { changeCity } from '../../store/action';
-import { City } from '../../types/city';
+import { cities } from '../../mocks/cities';
 import { Link } from 'react-router-dom';
 
 type Props = {
-  cities: City [];
   setSort: (str: SortType) => void ;
 }
 
-function Locations({cities, setSort}: Props): JSX.Element {
+function LocationsRaw({setSort}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector((state) => state.currentCity);
 
@@ -39,5 +39,6 @@ function Locations({cities, setSort}: Props): JSX.Element {
   );
 }
 
+const Locations = memo(LocationsRaw);
 export default Locations;
 

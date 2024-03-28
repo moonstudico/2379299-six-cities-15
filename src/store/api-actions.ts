@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { getNearbyOffers, getOfferId, getOffers, getReviews, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
+import { getFavoritesOffers, getNearbyOffers, getOfferId, getOffers, getReviews, getUserData, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -11,6 +11,7 @@ import { store } from '.';
 import { ExtendedOffer } from '../types/extended offer';
 import { UserReview } from '../types/userReview';
 import { Review } from '../types/review';
+import { StatusFavorite } from '../types/statusFavorites';
 
 
 export const clearErrorAction = createAsyncThunk(
@@ -60,6 +61,30 @@ export const saveReviewAction = createAsyncThunk<void, UserReview, {
     await api.post<UserReview>(`${APIRoute.Review}/${id}`, {comment, rating});
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
     dispatch(fetchReviewsOffersAction(id as string));
+  },
+);
+
+export const fetchFavoritesOffersAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/fetchFavoritesOffers',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Offer []>(APIRoute.Favorites);
+    dispatch(getFavoritesOffers(data));
+  },
+);
+
+export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/saveFavoritesOffers',
+  async ({id, isFavorite}, {dispatch, extra: api}) => {
+    await api.post<UserReview>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
+    dispatch(fetchFavoritesOffersAction());
   },
 );
 
@@ -116,9 +141,14 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    try{
+      const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+      dispatch(getUserData(data));
+      saveToken(data.token);
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    }catch{
+      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    }
   },
 );
 

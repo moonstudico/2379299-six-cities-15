@@ -1,6 +1,6 @@
 import OfferCard from '../../component/offer-card';
 import { Offer } from '../../types/offer';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Map from '../../component/map';
 import { useAppSelector } from '../../hock';
 import Sort from './sort';
@@ -21,11 +21,12 @@ const sortOffer = {
 function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<string>();
   const currentOffers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.currentCity));
-  const sortedOffers = [...currentOffers].sort(sortOffer[activeOfferSort]);
+  const sortedOffers = useMemo(() => [...currentOffers].sort(sortOffer[activeOfferSort]), [currentOffers, activeOfferSort] );
 
   const [isFilter, setFilter] = useState<boolean>(false);
   const handleMouseFilter = () =>{
     setFilter(!isFilter);
+
   };
 
   return(
@@ -46,7 +47,7 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
                 <use xlinkHref="#icon-arrow-select"></use>
               </svg>
             </span>
-            <Sort setSort={setSort} activeOfferSort={activeOfferSort} isFilter={isFilter}/>
+            <Sort setSort={setSort} activeOfferSort={activeOfferSort} isFilter={isFilter} setFilter={setFilter}/>
           </form>
           <div className="cities__places-list places__list tabs__content">
             {

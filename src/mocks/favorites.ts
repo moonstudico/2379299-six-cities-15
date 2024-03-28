@@ -21,7 +21,7 @@ const favorites: Offer[] = [
       longitude: 2.342499,
       zoom: 16
     },
-    isFavorite: true,
+    isFavorite: false,
     isPremium: false,
     rating: 1.5
   },
@@ -67,7 +67,7 @@ const favorites: Offer[] = [
       longitude: 2.335499,
       zoom: 16
     },
-    isFavorite: true,
+    isFavorite: false,
     isPremium: false,
     rating: 2
   },
