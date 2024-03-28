@@ -26,7 +26,6 @@ function LocationsRaw({setSort}: Props): JSX.Element {
                       dispatch(changeCity(city));
                       setSort(SortType.Default);
                     }}
-
                   >{city}
                   </span>
                 </Link>

@@ -21,7 +21,7 @@ const sortOffer = {
 function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<string>();
   const currentOffers = useAppSelector((state) => state.offers.filter((offer) => offer.city.name === state.currentCity));
-  const sortedOffers = useMemo(() => [...currentOffers].sort(sortOffer[activeOfferSort]), [currentOffers, activeOfferSort] );
+  const sortedOffers = useMemo(() => [...currentOffers].sort(sortOffer[activeOfferSort]), [currentOffers, activeOfferSort]);
 
   const [isFilter, setFilter] = useState<boolean>(false);
   const handleMouseFilter = () =>{

@@ -10,7 +10,7 @@ type Props = {
   id: string | undefined;
 }
 
-function UserReviews ({reviews, id}: Props): JSX.Element{
+function UserReviewsRew ({reviews, id}: Props): JSX.Element{
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return(
     <section className="offer__reviews reviews">
@@ -26,5 +26,5 @@ function UserReviews ({reviews, id}: Props): JSX.Element{
     </section>
   );
 }
-
-export default memo(UserReviews);
+const UserReviews = memo(UserReviewsRew);
+export default UserReviews;

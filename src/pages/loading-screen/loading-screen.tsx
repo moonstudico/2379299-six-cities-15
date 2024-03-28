@@ -1,9 +1,9 @@
 import { memo } from 'react';
 
-function LoadingScreen(): JSX.Element {
+function LoadingScreenRew(): JSX.Element {
   return (
     <p>Loading ...</p>
   );
 }
-
-export default memo (LoadingScreen);
+const LoadingScreen = memo (LoadingScreenRew);
+export default LoadingScreen;
