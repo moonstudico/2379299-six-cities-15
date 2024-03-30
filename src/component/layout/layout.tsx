@@ -9,9 +9,9 @@ import { store } from '../../store';
 function Layout(){
   const {pathname} = useLocation();
   const {rootClassName, linkClassName, showUser, showFooter} = getLayoutState (pathname as AppRoute);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const countFavorite = useAppSelector((state) => state.favoritesOffers);
-  const userData = useAppSelector((state) => state.userData);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
+  const countFavorite = useAppSelector((state) => state.offers.favoritesOffers);
+  const userData = useAppSelector((state) => state.user.userData);
 
   const handleClick = () => {
     store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));

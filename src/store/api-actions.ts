@@ -102,7 +102,6 @@ export const saveFavoritesExtendedOfferAction = createAsyncThunk<void, StatusFav
   },
 );
 
-
 export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;

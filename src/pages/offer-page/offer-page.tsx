@@ -26,10 +26,10 @@ function OfferPage(): JSX.Element {
   }, [id, dispatch]);
 
 
-  const extendedOffer = useAppSelector((state) => state.offer);
-  const nearbyOffer = useAppSelector((state) => state.nearbyOffers);
-  const reviews = useAppSelector((state) => state.reviews);
-  const isOfferLoading = useAppSelector((state) => state.isOfferLoadingStatus);
+  const extendedOffer = useAppSelector((state) => state.offers.offer);
+  const nearbyOffer = useAppSelector((state) => state.offers.nearbyOffers);
+  const reviews = useAppSelector((state) => state.user.reviews);
+  const isOfferLoading = useAppSelector((state) => state.loading.isOfferLoadingStatus);
 
   if (isOfferLoading) {
     return <LoadingScreen />;

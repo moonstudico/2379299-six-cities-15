@@ -11,7 +11,7 @@ type Props = {
 }
 
 function UserReviewsRew ({reviews, id}: Props): JSX.Element{
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
   return(
     <section className="offer__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>

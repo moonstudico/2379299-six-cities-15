@@ -3,7 +3,7 @@ import { store } from '../../store';
 
 const getLayoutState = (pathname:AppRoute) => {
   const state = store.getState();
-  const favorites = state.favoritesOffers;
+  const favorites = state.offers.favoritesOffers;
 
   let rootClassName = '';
   let linkClassName = '';

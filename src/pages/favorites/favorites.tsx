@@ -6,7 +6,7 @@ import { City } from '../../types/city';
 
 function Favorites(): JSX.Element {
 
-  const favorites = useAppSelector((state) => state.favoritesOffers);
+  const favorites = useAppSelector((state) => state.offers.favoritesOffers);
   const uniqueCities = [...new Set(favorites.map((favorite) => favorite.city.name))];
 
   return (

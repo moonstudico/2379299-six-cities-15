@@ -12,8 +12,8 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
 
 function App (): JSX.Element {
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.loading.isOffersDataLoading);
 
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {

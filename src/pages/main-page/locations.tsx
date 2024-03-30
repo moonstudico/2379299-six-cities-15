@@ -11,7 +11,7 @@ type Props = {
 
 function LocationsRaw({setSort}: Props): JSX.Element {
   const dispatch = useAppDispatch();
-  const currentCity = useAppSelector((state) => state.currentCity);
+  const currentCity = useAppSelector((state) => state.city.currentCity);
 
   return (
     <div className="tabs">
