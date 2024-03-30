@@ -1,7 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { cityReduser, loadingReduser, offersReduser, userReduser } from './reducer';
 import { createAPI } from '../services/api';
-
+import { offersReduser } from './offers-reduser/offersReduser';
+import { userReduser } from './user-reduser /user-reduser.ts ';
+import { cityReduser } from './city-reduser/city-reduser';
+import { loadingReduser } from './loading-reduser/loading-reduser';
 
 const rootReducer = combineReducers({
   offers: offersReduser.reducer,
@@ -9,7 +11,6 @@ const rootReducer = combineReducers({
   city: cityReduser.reducer,
   loading: loadingReduser.reducer,
 });
-
 
 export const api = createAPI();
 

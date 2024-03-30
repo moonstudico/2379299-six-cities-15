@@ -13,8 +13,6 @@ export const changeOffer = createAction<Offer >('сities/changeOffer');
 
 export const getOfferId = createAction<ExtendedOffer | null>('сities/getOfferId');
 
-// export const changeExtendedOffer = createAction<ExtendedOffer >('сities/changeOffer');
-
 export const getNearbyOffers = createAction<Offer[]>('сities/getNearbyOffers');
 
 export const getFavoritesOffers = createAction<Offer[]>('сities/getFavoritesOffers');
