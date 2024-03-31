@@ -3,8 +3,8 @@ import { changeCity } from '../action';
 import { cityReduser } from './city-reduser';
 
 
-describe('getCity', () => {
-  it('should update current city on CHANGE_CITY action', () => {
+describe('cityReduser', () => {
+  it('execute changeCity action', () => {
     const previousState = { currentCity: 'Paris' };
     const newCity = 'Beograd';
 

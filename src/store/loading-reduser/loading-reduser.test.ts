@@ -52,7 +52,7 @@ describe('loadingReduser', () => {
     const expectedResult = {
       error: null,
       isOffersDataLoading: false,
-      isOfferLoadingStatus: false,
+      isOfferLoadingStatus: true,
       isNearbyOffersLoadingStatus: false,
     };
     const result = loadingReduser.reducer(initialState, setNearbyOffersLoadingStatus(false));
