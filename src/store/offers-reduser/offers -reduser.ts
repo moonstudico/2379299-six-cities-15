@@ -1,16 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ExtendedOffer } from '../../types/extended offer';
 import { Offer } from '../../types/offer';
-import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers } from "../action";
+import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers } from '../action';
 
 const offersInitialState: {
-  currentCity: string;
   offers: Offer[];
   offer: ExtendedOffer | null;
   nearbyOffers: Offer[];
   favoritesOffers: Offer[];
 } = {
-  currentCity: 'Paris',
   offers: [],
   offer: null,
   nearbyOffers: [],
