@@ -39,7 +39,7 @@ function OfferPage(): JSX.Element {
     return <Navigate to="/not-found" replace/>;
   }
 
-  const {isPremium, title, rating, type, bedrooms, maxAdults, price} = extendedOffer;
+  const {isPremium, title, rating, type, bedrooms, maxAdults, price, isFavorite} = extendedOffer;
   const roundedRating = Math.round(rating);
 
   const handleFavoriteClick = () => {
@@ -69,7 +69,7 @@ function OfferPage(): JSX.Element {
                 {title}
               </h1>
               <button
-                className="offer__bookmark-button button"
+                className={`offer__bookmark-button button ${isFavorite ? 'offer__bookmark-button--active' : ''}`}
                 type="button"
                 onClick={handleFavoriteClick}
               >
