@@ -1,6 +1,6 @@
 import { AppThunkDispatch } from '../types/app-thunk-dispatch';
-import { requireAuthorization } from './action';
-import { checkAuthAction } from './api-actions';
+import { getOffers, getUserData, requireAuthorization, setOffersDataLoadingStatus } from './action';
+import { checkAuthAction, fetchOffersAction, loginAction } from './api-actions';
 import MockAdapter from 'axios-mock-adapter';
 import { configureMockStore } from '@jedmao/redux-mock-store';
 import { State } from '../types/state';
@@ -9,6 +9,10 @@ import thunk from 'redux-thunk';
 import { APIRoute } from '../const';
 import { extractActionsTypes } from '../mocks';
 import { createAPI } from '../services/api';
+import { makeOffersTest } from '../mocks/test';
+import { AuthData } from '../types/auth-data';
+import { store } from '.';
+import { saveToken } from '../services/token';
 
 describe('Async actions', () => {
   const axios = createAPI();
@@ -36,41 +40,53 @@ describe('Async actions', () => {
     });
   });
 
-  // describe('fetchOffersAction', () => {
-  //   it('should dispatch "fetchOffersAction.pending", "fetchOffersAction.fulfilled", when server response 200', async() => {
-  //     const mockOffers = [];
-  //     mockAxiosAdapter.onGet(APIRoute.Questions).reply(200, mockQuestions);
+  describe('fetchOffersAction', () => {
+    it('should dispatch "fetchOffersAction.pending", "fetchOffersAction.fulfilled", when server response 200', async() => {
+      const mockOffers = [makeOffersTest()];
+      mockAxiosAdapter.onGet(APIRoute.Offers).reply(200, mockOffers);
 
-  //     await store.dispatch(fetchQuestionAction());
+      await store.dispatch(fetchOffersAction());
 
-  //     const emittedActions = store.getActions();
-  //     const extractedActionsTypes = extractActionsTypes(emittedActions);
-  //     const fetchQuestionsActionFulfilled = emittedActions.at(1) as ReturnType<typeof fetchQuestionAction.fulfilled>;
+      const emittedActions = store.getActions();
+      const extractedActionsTypes = extractActionsTypes(emittedActions);
 
-  //     expect(extractedActionsTypes).toEqual([
-  //       fetchQuestionAction.pending.type,
-  //       fetchQuestionAction.fulfilled.type,
-  //     ]);
+      expect(extractedActionsTypes).toEqual([
+        fetchOffersAction.pending.type,
+        setOffersDataLoadingStatus.type,
+        setOffersDataLoadingStatus.type,
+        getOffers.type,
+        fetchOffersAction.fulfilled.type,
+      ]);
+    });
+  });
 
-  //     expect(fetchQuestionsActionFulfilled.payload)
-  //       .toEqual(mockQuestions);
-  //   });
+  it('should dispatch "fetchQuestionAction.pending", "fetchQuestionAction.rejected" when server response 400', async () => {
+    mockAxiosAdapter.onGet(APIRoute.Offers).reply(400, []);
 
+    await store.dispatch(fetchOffersAction());
+    const actions = extractActionsTypes(store.getActions());
 
-  // export const fetchOffersAction = createAsyncThunk<void, undefined, {
-  //   dispatch: AppDispatch;
-  //   state: State;
-  //   extra: AxiosInstance;
-  // }>(
-  //   'data/fetchOffers',
-  //   async(_arg, {dispatch, extra: api}) => {
-  //     dispatch(setOffersDataLoadingStatus(true));
-  //     const {data} = await api.get<Offer[]>(APIRoute.Offers);
-  //     dispatch(setOffersDataLoadingStatus(false));
-  //     dispatch(getOffers(data));
-  //   },
-  // );
+    expect(actions).toEqual([
+      fetchOffersAction.pending.type,
+      setOffersDataLoadingStatus.type,
+      fetchOffersAction.rejected.type,
+    ]);
+  });
+  describe('loginAction', () => {
+    it('should dispatch "loginAction.pending", "redirectToRoute", "loginAction.fulfilled" when server response 200', async() => {
+      const fakeUser: AuthData = { login: 'test@test.ru', password: '123456' };
+      const fakeServerReply = { token: 'secret' };
+      mockAxiosAdapter.onPost(APIRoute.Login).reply(200, fakeServerReply);
 
+      await store.dispatch(loginAction(fakeUser));
+      const actions = extractActionsTypes(store.getActions());
 
-
+      expect(actions).toEqual([
+        loginAction.pending.type,
+        getUserData.type,
+        requireAuthorization.type,
+        loginAction.fulfilled.type,
+      ]);
+    });
+  });
 });
