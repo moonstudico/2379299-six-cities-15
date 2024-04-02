@@ -10,11 +10,16 @@ function Login(): JSX.Element {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (loginRef.current !== null && passwordRef.current !== null){
-      dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      }));
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      const password = passwordRef.current.value;
+      if (/[A-Za-z]/.test(password) && /\d/.test(password)) {
+        dispatch(loginAction({
+          login: loginRef.current.value,
+          password: password
+        }));
+      } else {
+        console.error('Пароль должен содержать как минимум одну букву и одну цифру.');
+      }
     }
   };
 
