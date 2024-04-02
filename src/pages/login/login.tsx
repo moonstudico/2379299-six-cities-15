@@ -1,6 +1,7 @@
 import { FormEvent, useRef } from 'react';
 import { loginAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hock';
+import { processErrorHandle } from '../../services/process-error-handle';
 
 function Login(): JSX.Element {
 
@@ -18,7 +19,8 @@ function Login(): JSX.Element {
           password: password
         }));
       } else {
-        console.error('Пароль должен содержать как минимум одну букву и одну цифру.');
+        const errorMessage = 'Пароль должен содержать как минимум одну букву и одну цифру.';
+        processErrorHandle(errorMessage);
       }
     }
   };
