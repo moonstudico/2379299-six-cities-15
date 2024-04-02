@@ -21,7 +21,7 @@ function OfferPage(): JSX.Element {
       dispatch(fetchOfferIdAction(id));
       dispatch(fetchNearbyOffersAction(id));
       dispatch(fetchReviewsOffersAction(id));
-      dispatch(fetchFavoritesOffersAction());
+      // dispatch(fetchFavoritesOffersAction());
     }
   }, [id, dispatch]);
 

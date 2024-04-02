@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Review } from '../../types/review';
+import { formattedDate, formattedDateTime } from '../../mocks/utils';
 
 type Props = {
   review: Review;
@@ -28,7 +29,7 @@ function ReviewsItemRew({review}: Props): JSX.Element {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{date}n</time>
+        <time className="reviews__time" dateTime={formattedDateTime(date)}>{formattedDate(date)}</time>
       </div>
     </li>
   );

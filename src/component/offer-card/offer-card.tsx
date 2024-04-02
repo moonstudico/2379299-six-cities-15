@@ -11,18 +11,18 @@ type Props = {
 }
 
 function OfferCardRew({offer, setActiveCardId, className}:Props): JSX.Element {
-  const [currentOffers, setcurrentOffers] = useState<Offer>(offer);
+  // const [currentOffers, setcurrentOffers] = useState<Offer>(offer);
 
   const handleFavoriteClick = () => {
     store.dispatch(saveFavoritesOffersAction({
       id: offer.id,
       isFavorite: offer.isFavorite ? 0 : 1
     }));
-    setcurrentOffers({...currentOffers, isFavorite: !currentOffers.isFavorite});
+    // setcurrentOffers({...currentOffers, isFavorite: !currentOffers.isFavorite});
 
   };
 
-  const {rating, id, isPremium, previewImage, title, type, isFavorite, price} = currentOffers;
+  const {rating, id, isPremium, previewImage, title, type, isFavorite, price} = offer;
   const roundedRating = Math.round(rating);
   const handleMouseEnter = () => {
     if(setActiveCardId){
