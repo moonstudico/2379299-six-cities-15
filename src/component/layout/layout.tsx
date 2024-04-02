@@ -41,7 +41,7 @@ function Layout(){
                         <div className="header__avatar-wrapper user__avatar-wrapper" style={authorizationStatus === AuthorizationStatus.Auth ? divStyle : {}}>
                         </div>
                         {
-                          authorizationStatus === AuthorizationStatus.NoAuth ?
+                          authorizationStatus === AuthorizationStatus.NoAuth || authorizationStatus === AuthorizationStatus.Unknown ?
                             (<span className="header__login">Sign in</span>)
                             : (
                               <>
