@@ -122,14 +122,16 @@ export const fetchOfferIdAction = createAsyncThunk<void, string, {
   'data/fetchOfferId',
   async(id, {dispatch, extra: api}) => {
     dispatch(setOfferLoadingStatus(true));
-    try{
+    try {
       const {data} = await api.get<ExtendedOffer>(`${APIRoute.Offers}/${id}`);
       dispatch(getOfferId(data));
-    }catch{
-      dispatch(getOfferId(null));
+    } catch (error) {
+      dispatch(setError('Ошибка при загрузке данных'));
+      throw error;
+    } finally {
+      dispatch(setOfferLoadingStatus(false));
     }
-    dispatch(setOfferLoadingStatus(false));
-  },
+  }
 );
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
