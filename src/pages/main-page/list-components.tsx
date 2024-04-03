@@ -26,7 +26,6 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
   const [isFilter, setFilter] = useState<boolean>(false);
   const handleMouseFilter = () =>{
     setFilter(!isFilter);
-
   };
 
   return(
@@ -42,7 +41,7 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
               tabIndex={0}
               onClick={handleMouseFilter}
             >
-              Popular
+              {activeOfferSort}
               <svg className="places__sorting-arrow" width="7" height="4">
                 <use xlinkHref="#icon-arrow-select"></use>
               </svg>

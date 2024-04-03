@@ -13,8 +13,8 @@ function Layout(){
   const countFavorite = useAppSelector((state) => state.offers.favoritesOffers);
   const userData = useAppSelector((state) => state.user.userData);
 
-  const handleClick = () => {
-
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
     store.dispatch(logoutAction());
   };
 
@@ -59,8 +59,8 @@ function Layout(){
                           <li className="header__nav-item">
                             <Link
                               className="header__nav-link"
-                              to={AppRoute.Main}
                               onClick={handleClick}
+                              to="#"
                             >
                               <span className="header__signout">Sign out</span>
                             </Link>

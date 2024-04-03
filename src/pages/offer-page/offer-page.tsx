@@ -2,15 +2,16 @@ import Host from './host';
 import UserReviews from './user-reviews';
 import ContainerOffers from './container-offers';
 import GaleriContaner from './galeri-contaner';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import OfferInside from './offer-inside';
 import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
-import { fetchFavoritesOffersAction, fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction, saveFavoritesExtendedOfferAction} from '../../store/api-actions';
+import { fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction, saveFavoritesExtendedOfferAction} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
 import { store } from '../../store';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 function OfferPage(): JSX.Element {
 
@@ -21,7 +22,6 @@ function OfferPage(): JSX.Element {
       dispatch(fetchOfferIdAction(id));
       dispatch(fetchNearbyOffersAction(id));
       dispatch(fetchReviewsOffersAction(id));
-      // dispatch(fetchFavoritesOffersAction());
     }
   }, [id, dispatch]);
 
@@ -30,6 +30,8 @@ function OfferPage(): JSX.Element {
   const nearbyOffer = useAppSelector((state) => state.offers.nearbyOffers);
   const reviews = useAppSelector((state) => state.user.reviews);
   const isOfferLoading = useAppSelector((state) => state.loading.isOfferLoadingStatus);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
+  const navigate = useNavigate();
 
   if (isOfferLoading) {
     return <LoadingScreen />;
@@ -43,11 +45,14 @@ function OfferPage(): JSX.Element {
   const roundedRating = Math.round(rating);
 
   const handleFavoriteClick = () => {
-    store.dispatch(saveFavoritesExtendedOfferAction({
-      id: extendedOffer.id,
-      isFavorite: extendedOffer.isFavorite ? 0 : 1
-    }));
-
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    } else {
+      store.dispatch(saveFavoritesExtendedOfferAction({
+        id: extendedOffer.id,
+        isFavorite: extendedOffer.isFavorite ? 0 : 1
+      }));
+    }
   };
 
   return (

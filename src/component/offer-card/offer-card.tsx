@@ -1,8 +1,11 @@
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import { store } from '../../store';
 import { saveFavoritesOffersAction } from '../../store/api-actions';
-import { memo, useState } from 'react';
+import { memo } from 'react';
+import { useAppSelector } from '../../hock';
+import { AppRoute, AuthorizationStatus } from '../../const';
+
 
 type Props = {
   offer: Offer;
@@ -11,15 +14,17 @@ type Props = {
 }
 
 function OfferCardRew({offer, setActiveCardId, className}:Props): JSX.Element {
-  // const [currentOffers, setcurrentOffers] = useState<Offer>(offer);
-
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
+  const navigate = useNavigate();
   const handleFavoriteClick = () => {
-    store.dispatch(saveFavoritesOffersAction({
-      id: offer.id,
-      isFavorite: offer.isFavorite ? 0 : 1
-    }));
-    // setcurrentOffers({...currentOffers, isFavorite: !currentOffers.isFavorite});
-
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    } else {
+      store.dispatch(saveFavoritesOffersAction({
+        id: offer.id,
+        isFavorite: offer.isFavorite ? 0 : 1
+      }));
+    }
   };
 
   const {rating, id, isPremium, previewImage, title, type, isFavorite, price} = offer;
