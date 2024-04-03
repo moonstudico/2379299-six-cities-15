@@ -13,7 +13,6 @@ import { UserReview } from '../types/userReview';
 import { Review } from '../types/review';
 import { StatusFavorite } from '../types/statusFavorites';
 
-
 export const clearErrorAction = createAsyncThunk(
   'сities/clearError',
   () => {
@@ -126,7 +125,7 @@ export const fetchOfferIdAction = createAsyncThunk<void, string, {
       const {data} = await api.get<ExtendedOffer>(`${APIRoute.Offers}/${id}`);
       dispatch(getOfferId(data));
     } catch (error) {
-      dispatch(setError('Ошибка при загрузке данных'));
+      dispatch(setError('Error when enabling data'));
       throw error;
     } finally {
       dispatch(setOfferLoadingStatus(false));
