@@ -4,12 +4,13 @@ import { AuthorizationStatus } from '../const';
 import { ExtendedOffer } from '../types/extended offer';
 import { Review } from '../types/review';
 import { UserData } from '../types/user-data';
+import { StatusFavorite } from '../types/statusFavorites';
 
 export const changeCity = createAction<string>('сities/changeCity');
 
 export const getOffers = createAction<Offer[]>('сities/getOffers');
 
-export const changeOffer = createAction<Offer >('сities/changeOffer');
+export const changeOffer = createAction<StatusFavorite>('сities/changeOffer');
 
 export const getOfferId = createAction<ExtendedOffer | null>('сities/getOfferId');
 

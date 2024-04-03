@@ -2,8 +2,8 @@ import {Link, Outlet, useLocation} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getLayoutState} from '../layout/utils';
 import { useAppSelector } from '../../hock';
-import { requireAuthorization } from '../../store/action';
 import { store } from '../../store';
+import { logoutAction } from '../../store/api-actions';
 
 
 function Layout(){
@@ -14,7 +14,8 @@ function Layout(){
   const userData = useAppSelector((state) => state.user.userData);
 
   const handleClick = () => {
-    store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+
+    store.dispatch(logoutAction());
   };
 
   const divStyle = {

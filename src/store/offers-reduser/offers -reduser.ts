@@ -28,10 +28,11 @@ export const offersReduser = createSlice({
       .addCase(changeOffer, (state, {payload}) => {
         state.offers = state.offers.map((offer) => {
           if (offer.id === payload.id){
-            return payload;
+            return {...offer, isFavorite: payload.isFavorite};
           }
           return offer;
         });
+        state.offer = state.offer ? {...state.offer, isFavorite: payload.isFavorite} : null ;
       })
       .addCase(getOfferId, (state, {payload}) => {
         state.offer = payload;

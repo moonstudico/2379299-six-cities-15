@@ -84,7 +84,7 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
   'user/saveFavoritesOffers',
   async ({id, isFavorite}, {dispatch, extra: api}) => {
     const {data} = await api.post<Offer>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
-    dispatch(changeOffer(data));
+    dispatch(changeOffer({id: data.id, isFavorite: data.isFavorite}));
     dispatch(fetchFavoritesOffersAction());
   },
 );
@@ -97,7 +97,7 @@ export const saveFavoritesExtendedOfferAction = createAsyncThunk<void, StatusFav
   'user/saveFavoritesExtendedOffer',
   async ({id, isFavorite}, {dispatch, extra: api}) => {
     const {data} = await api.post<ExtendedOffer>(`${APIRoute.Favorites}/${id}/${isFavorite}`);
-    dispatch(getOfferId(data));
+    dispatch(changeOffer({id: data.id, isFavorite: data.isFavorite}));
     dispatch(fetchFavoritesOffersAction());
   },
 );
