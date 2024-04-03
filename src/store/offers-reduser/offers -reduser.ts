@@ -93,7 +93,11 @@ export const offersReduser = createSlice({
           }
           return offer;
         });
-        state.offer = state.offer ? {...state.offer, isFavorite: payload.isFavorite} : null ;
+
+        if (state.offer && state.offer.id === payload.id) {
+          state.offer = { ...state.offer, isFavorite: payload.isFavorite };
+        }
+
         state.nearbyOffers = state.nearbyOffers.map((nearbyOffer) => {
           if (nearbyOffer.id === payload.id){
             return {...nearbyOffer, isFavorite: payload.isFavorite};
