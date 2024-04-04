@@ -12,6 +12,8 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
 import { store } from '../../store';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { ExtendedOffer } from '../../types/extended offer';
+import { Offer } from '../../types/offer';
 
 function OfferPage(): JSX.Element {
 
@@ -27,12 +29,13 @@ function OfferPage(): JSX.Element {
 
 
   const extendedOffer = useAppSelector((state) => state.offers.offer);
-  const nearbyOffer = useAppSelector((state) => state.offers.nearbyOffers);
+  const nearbyOffer = useAppSelector((state) => state.offers.nearbyOffers).slice(0, 3);
   const reviews = useAppSelector((state) => state.user.reviews);
   const isOfferLoading = useAppSelector((state) => state.loading.isOfferLoadingStatus);
   const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
   const navigate = useNavigate();
-  const 
+
+  const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffer.concat(extendedOffer);
 
   if (isOfferLoading) {
     return <LoadingScreen />;
@@ -114,9 +117,9 @@ function OfferPage(): JSX.Element {
             <UserReviews reviews = {reviews} id = {id}/>
           </div>
         </div>
-        <Map currentCity={extendedOffer.city} points = {nearbyOffer.slice(0, 3)} activeCardId = {extendedOffer.id} className="offer"/>
+        <Map currentCity={extendedOffer.city} points = {mapOffers} activeCardId = {extendedOffer.id} className="offer"/>
       </section>
-      <ContainerOffers offers = {nearbyOffer.slice(0, 3)}/>
+      <ContainerOffers offers = {nearbyOffer}/>
     </main>
   );
 }
