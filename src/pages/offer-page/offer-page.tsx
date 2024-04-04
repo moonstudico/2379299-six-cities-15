@@ -32,6 +32,7 @@ function OfferPage(): JSX.Element {
   const isOfferLoading = useAppSelector((state) => state.loading.isOfferLoadingStatus);
   const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
   const navigate = useNavigate();
+  const 
 
   if (isOfferLoading) {
     return <LoadingScreen />;

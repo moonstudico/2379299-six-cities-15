@@ -1,5 +1,5 @@
-import {Link, useNavigate} from 'react-router-dom';
-import {Offer} from '../../types/offer';
+import { Link, useNavigate } from 'react-router-dom';
+import { Offer } from '../../types/offer';
 import { store } from '../../store';
 import { saveFavoritesOffersAction } from '../../store/api-actions';
 import { memo } from 'react';

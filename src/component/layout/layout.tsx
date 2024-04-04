@@ -23,6 +23,11 @@ function Layout(){
     borderRadius: '50%',
   };
 
+  const elementStyle = {
+    backgroundImage: 'url(../img/avatar.svg)',
+    borderRadius: '50%'
+  };
+
   return(
     <div className={`page ${rootClassName}`}>
       <header className="header">
@@ -39,10 +44,16 @@ function Layout(){
                   <ul className="header__nav-list">
                     <li className="header__nav-item user">
                       <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                        <div className="header__avatar-wrapper user__avatar-wrapper" style={authorizationStatus === AuthorizationStatus.Auth ? divStyle : {}}>
+                        <div className="header__avatar-wrapper user__avatar-wrapper"
+                          style={authorizationStatus === AuthorizationStatus.Auth ? divStyle : elementStyle}
+                          // style={{
+                          //   backgroundImage: `url(${authorizationStatus === AuthorizationStatus.Auth ? userData?.avatarUrl : '../img/avatar.svg'})`,
+                          //   borderRadius: '50%'
+                          // }}
+                        >
                         </div>
                         {
-                          authorizationStatus === AuthorizationStatus.NoAuth || authorizationStatus === AuthorizationStatus.Unknown ?
+                          authorizationStatus === AuthorizationStatus.NoAuth ?
                             (<span className="header__login">Sign in</span>)
                             : (
                               <>
