@@ -9,7 +9,6 @@ import { SortType } from '../../const';
 type Props = {
   setSort: (str: SortType) => void ;
   activeOfferSort: SortType;
-  allOffers: Offer[];
 }
 
 const sortOffer = {
@@ -19,20 +18,18 @@ const sortOffer = {
   [SortType.TopRated]: ((a: Offer, b: Offer) => b.rating - a.rating),
 };
 
-function ListComponents ({setSort, activeOfferSort, allOffers}: Props): JSX.Element {
+function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<string>();
+  const currentCity = useAppSelector((state) => state.city.currentCity);
   const currentOffers = useAppSelector((state) => state.offers.offers.filter((offer) => offer.city.name === state.city.currentCity));
   const sortedOffers = useMemo(() => [...currentOffers].sort(sortOffer[activeOfferSort]), [currentOffers, activeOfferSort]);
-
   const [isFilter, setFilter] = useState<boolean>(false);
   const handleMouseFilter = () =>{
     setFilter(!isFilter);
   };
 
   return(
-
-
-    (allOffers.length > 0) ? (
+    (sortedOffers.length > 0) ? (
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
@@ -72,7 +69,7 @@ function ListComponents ({setSort, activeOfferSort, allOffers}: Props): JSX.Elem
           <section className="cities__no-places">
             <div className="cities__status-wrapper tabs__content">
               <b className="cities__status">No places to stay available</b>
-              <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
+              <p className="cities__status-description">We could not find any property available at the moment in {currentCity}</p>
             </div>
           </section>
           <div className="cities__right-section"></div>

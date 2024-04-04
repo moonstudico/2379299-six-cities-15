@@ -12,7 +12,7 @@ function MainPage(): JSX.Element {
     <main className={`page__main page__main--index ${allOffers.length > 0 ? '' : 'page__main--index-empty'} `}>
       <h1 className="visually-hidden">Cities</h1>
       <Locations setSort={setSort}/>
-      <ListComponents setSort={setSort} activeOfferSort={activeOfferSort} allOffers={allOffers}/>
+      <ListComponents setSort={setSort} activeOfferSort={activeOfferSort} />
     </main>
   );
 }

@@ -19,6 +19,7 @@ export enum SortType{
 }
 
 export const TIMEOUT_SHOW_ERROR = 2000;
+export const MAX_COUNT_REVIEWS = 10;
 
 export enum APIRoute{
   Offers = '/offers',
