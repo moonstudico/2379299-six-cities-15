@@ -2,24 +2,30 @@ import {Link, Outlet, useLocation} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {getLayoutState} from '../layout/utils';
 import { useAppSelector } from '../../hock';
-import { requireAuthorization } from '../../store/action';
 import { store } from '../../store';
+import { logoutAction } from '../../store/api-actions';
 
 
 function Layout(){
   const {pathname} = useLocation();
   const {rootClassName, linkClassName, showUser, showFooter} = getLayoutState (pathname as AppRoute);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const countFavorite = useAppSelector((state) => state.favoritesOffers);
-  const userData = useAppSelector((state) => state.userData);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
+  const countFavorite = useAppSelector((state) => state.offers.favoritesOffers);
+  const userData = useAppSelector((state) => state.user.userData);
 
-  const handleClick = () => {
-    store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    store.dispatch(logoutAction());
   };
 
   const divStyle = {
     backgroundImage: `url(${userData?.avatarUrl})`,
     borderRadius: '50%',
+  };
+
+  const elementStyle = {
+    backgroundImage: 'url(../img/avatar.svg)',
+    borderRadius: '50%'
   };
 
   return(
@@ -38,7 +44,13 @@ function Layout(){
                   <ul className="header__nav-list">
                     <li className="header__nav-item user">
                       <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Favorites}>
-                        <div className="header__avatar-wrapper user__avatar-wrapper" style={divStyle}>
+                        <div className="header__avatar-wrapper user__avatar-wrapper"
+                          style={authorizationStatus === AuthorizationStatus.Auth ? divStyle : elementStyle}
+                          // style={{
+                          //   backgroundImage: `url(${authorizationStatus === AuthorizationStatus.Auth ? userData?.avatarUrl : '../img/avatar.svg'})`,
+                          //   borderRadius: '50%'
+                          // }}
+                        >
                         </div>
                         {
                           authorizationStatus === AuthorizationStatus.NoAuth ?
@@ -58,8 +70,8 @@ function Layout(){
                           <li className="header__nav-item">
                             <Link
                               className="header__nav-link"
-                              to={AppRoute.Main}
                               onClick={handleClick}
+                              to="#"
                             >
                               <span className="header__signout">Sign out</span>
                             </Link>

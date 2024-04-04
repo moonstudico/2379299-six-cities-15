@@ -1,6 +1,7 @@
 import {useEffect, useState, useRef} from 'react';
 import leaflet from 'leaflet';
 import { City } from '../../types/offer';
+import { ATTRIBUTION, TILE_LAYER } from '../../const';
 
 function useMap(mapRef: React.RefObject<HTMLDivElement>, city: City) {
   const {location: { latitude, longitude, zoom }} = city;
@@ -19,9 +20,9 @@ function useMap(mapRef: React.RefObject<HTMLDivElement>, city: City) {
 
       leaflet
         .tileLayer(
-          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+          TILE_LAYER,
           {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: ATTRIBUTION,
           },
         )
         .addTo(instance);
@@ -35,3 +36,4 @@ function useMap(mapRef: React.RefObject<HTMLDivElement>, city: City) {
 }
 
 export default useMap;
+

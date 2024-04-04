@@ -22,8 +22,6 @@ function SortRew ({setSort, activeOfferSort, isFilter, setFilter}: Props): JSX.E
             setFilter(!isFilter);
           }}
         >{sortType}
-          setFilter(!isFilter)
-
         </li>
       ))}
     </ul>

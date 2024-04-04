@@ -1,20 +1,36 @@
 import { FormEvent, useRef } from 'react';
 import { loginAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hock';
+import { processErrorHandle } from '../../services/process-error-handle';
+import { cities } from '../../mocks/cities';
+import { store } from '../../store';
+import { changeCity } from '../../store/action';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 function Login(): JSX.Element {
 
   const loginRef = useRef<HTMLInputElement| null>(null);
   const passwordRef = useRef<HTMLInputElement| null>(null);
   const dispatch = useAppDispatch();
+  const randomIndex = Math.floor(Math.random() * cities.length);
+  const randomCity = cities[randomIndex];
+  store.dispatch(changeCity(randomCity));
+
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    if (loginRef.current !== null && passwordRef.current !== null){
-      dispatch(loginAction({
-        login: loginRef.current.value,
-        password: passwordRef.current.value
-      }));
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      const password = passwordRef.current.value;
+      if (/[A-Za-z]/.test(password) && /\d/.test(password)) {
+        dispatch(loginAction({
+          login: loginRef.current.value,
+          password: password
+        }));
+      } else {
+        const errorMessage = 'Пароль должен содержать как минимум одну букву и одну цифру.';
+        processErrorHandle(errorMessage);
+      }
     }
   };
 
@@ -56,9 +72,9 @@ function Login(): JSX.Element {
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
+            <Link className="locations__item-link" to={AppRoute.Main}>
+              <span>{randomCity}</span>
+            </Link >
           </div>
         </section>
       </div>

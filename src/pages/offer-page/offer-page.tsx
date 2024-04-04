@@ -2,15 +2,18 @@ import Host from './host';
 import UserReviews from './user-reviews';
 import ContainerOffers from './container-offers';
 import GaleriContaner from './galeri-contaner';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import OfferInside from './offer-inside';
 import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
-import { fetchFavoritesOffersAction, fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction, saveFavoritesExtendedOfferAction} from '../../store/api-actions';
+import { fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction, saveFavoritesExtendedOfferAction} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
 import { store } from '../../store';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { ExtendedOffer } from '../../types/extended offer';
+import { Offer } from '../../types/offer';
 
 function OfferPage(): JSX.Element {
 
@@ -21,15 +24,18 @@ function OfferPage(): JSX.Element {
       dispatch(fetchOfferIdAction(id));
       dispatch(fetchNearbyOffersAction(id));
       dispatch(fetchReviewsOffersAction(id));
-      dispatch(fetchFavoritesOffersAction());
     }
   }, [id, dispatch]);
 
 
-  const extendedOffer = useAppSelector((state) => state.offer);
-  const nearbyOffer = useAppSelector((state) => state.nearbyOffers);
-  const reviews = useAppSelector((state) => state.reviews);
-  const isOfferLoading = useAppSelector((state) => state.isOfferLoadingStatus);
+  const extendedOffer = useAppSelector((state) => state.offers.offer);
+  const nearbyOffer = useAppSelector((state) => state.offers.nearbyOffers).slice(0, 3);
+  const reviews = useAppSelector((state) => state.user.reviews);
+  const isOfferLoading = useAppSelector((state) => state.loading.isOfferLoadingStatus);
+  const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
+  const navigate = useNavigate();
+
+  const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffer.concat(extendedOffer);
 
   if (isOfferLoading) {
     return <LoadingScreen />;
@@ -39,15 +45,18 @@ function OfferPage(): JSX.Element {
     return <Navigate to="/not-found" replace/>;
   }
 
-  const {isPremium, title, rating, type, bedrooms, maxAdults, price} = extendedOffer;
+  const {isPremium, title, rating, type, bedrooms, maxAdults, price, isFavorite} = extendedOffer;
   const roundedRating = Math.round(rating);
 
   const handleFavoriteClick = () => {
-    store.dispatch(saveFavoritesExtendedOfferAction({
-      id: extendedOffer.id,
-      isFavorite: extendedOffer.isFavorite ? 0 : 1
-    }));
-
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    } else {
+      store.dispatch(saveFavoritesExtendedOfferAction({
+        id: extendedOffer.id,
+        isFavorite: extendedOffer.isFavorite ? 0 : 1
+      }));
+    }
   };
 
   return (
@@ -69,7 +78,7 @@ function OfferPage(): JSX.Element {
                 {title}
               </h1>
               <button
-                className="offer__bookmark-button button"
+                className={`offer__bookmark-button button ${isFavorite ? 'offer__bookmark-button--active' : ''}`}
                 type="button"
                 onClick={handleFavoriteClick}
               >
@@ -85,7 +94,7 @@ function OfferPage(): JSX.Element {
                 <span className="visually-hidden">{roundedRating}</span>
               </div>
               <span className="offer__rating-value rating__value">
-                { Math.round(rating)}
+                {rating}
               </span>
             </div>
             <ul className="offer__features">
@@ -108,9 +117,9 @@ function OfferPage(): JSX.Element {
             <UserReviews reviews = {reviews} id = {id}/>
           </div>
         </div>
-        <Map currentCity={extendedOffer.city} points = {nearbyOffer.slice(0, 3)} activeCardId = {extendedOffer.id} className="offer"/>
+        <Map currentCity={extendedOffer.city} points = {mapOffers} activeCardId = {extendedOffer.id} className="offer"/>
       </section>
-      <ContainerOffers offers = {nearbyOffer.slice(0, 3)}/>
+      <ContainerOffers offers = {nearbyOffer}/>
     </main>
   );
 }
