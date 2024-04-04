@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
 import { saveReviewAction } from '../../store/api-actions';
 import { useAppDispatch } from '../../hock';
+import { MAX_LENGHT, MIN_LENGHT } from '../../const';
 
 type Props = {
   id: string | undefined;
@@ -69,16 +70,17 @@ function Form({id}: Props): JSX.Element {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleCommentChange}
-        maxLength={300}
-        minLength={50}
+        maxLength={MAX_LENGHT}
+        minLength={MIN_LENGHT}
         value={comment}
+
       >
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!(comment.length >= 50 && comment.length <= 300 && rating && rating > 0)} >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!(rating && rating > 0)} >Submit</button>
       </div>
     </form>
   );

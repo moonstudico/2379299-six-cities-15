@@ -27,14 +27,13 @@ function ListComponents ({setSort, activeOfferSort}: Props): JSX.Element {
   const handleMouseFilter = () =>{
     setFilter(!isFilter);
   };
-
   return(
     (sortedOffers.length > 0) ? (
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found"> {sortedOffers.length} places to stay in {sortedOffers[0].city.name} </b>
+            <b className="places__found"> {sortedOffers.length} {sortedOffers.length > 1 ? 'places' : 'place'} to stay in {currentCity} </b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span
