@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers, getReviews, getUserData, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
+import { changeOffer, changeReviews, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers, getReviews, getUserData, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -58,10 +58,9 @@ export const saveReviewAction = createAsyncThunk<void, UserReview, {
 }>(
   'user/saveReview',
   async ({id, comment, rating}, {dispatch, extra: api}) => {
-    await api.post<UserReview>(`${APIRoute.Review}/${id}`, {comment, rating});
+    const {data} = await api.post<Review>(`${APIRoute.Review}/${id}`, {comment, rating});
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    
-    dispatch(fetchReviewsOffersAction(id as string));
+    dispatch(changeReviews(data));
   },
 );
 
@@ -98,6 +97,7 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
       isPremium: data.isPremium,
       rating: data.rating
     }));
+    // dispatch(fetchFavoritesOffersAction());
   },
 );
 

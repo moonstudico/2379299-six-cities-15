@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getReviews, getUserData, requireAuthorization } from '../action';
+import { changeReviews, getReviews, getUserData, requireAuthorization } from '../action';
 import { AuthorizationStatus } from '../../const';
 import { UserData } from '../../types/user-data';
 import { Review } from '../../types/review';
@@ -25,6 +25,9 @@ export const userReduser = createSlice({
     builder
       .addCase(getReviews, (state, {payload}) => {
         state.reviews = payload;
+      })
+      .addCase(changeReviews, (state, {payload}) => {
+        state.reviews.push(payload);
       })
       .addCase(getUserData, (state, {payload}) => {
         state.userData = payload;

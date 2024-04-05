@@ -20,6 +20,8 @@ export const getFavoritesOffers = createAction<Offer[]>('сities/getFavoritesOff
 
 export const getReviews = createAction<Review[]>('сities/getReviews ');
 
+export const changeReviews = createAction<Review>('сities/changeReviews');
+
 export const getUserData = createAction<UserData>('getUserData');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAvtorization');
