@@ -12,7 +12,7 @@ function CityItem({favorit}: Props):JSX.Element{
   const handleFavoriteClick = () => {
     store.dispatch(saveFavoritesOffersAction({
       id: favorit.id,
-      isFavorite: favorit.isFavorite ? 0 : 1
+      isFavorite: favorit.isFavorite
     }));
   };
 

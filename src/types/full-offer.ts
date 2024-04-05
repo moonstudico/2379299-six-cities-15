@@ -1,17 +1,13 @@
+
 import { Location, City, HousingType } from '../types/offer';
+import { Host } from './extended offer';
 
-export type Host = {
-  name: string;
-  avatarUrl: string;
-  isPro: boolean;
-}
-
-
-export type ExtendedOffer = {
+export type FullOffer = {
   id: string;
   title: string;
   type: HousingType;
   price: number;
+  previewImage: string;
   city: City;
   location: Location;
   isFavorite: boolean;
@@ -21,7 +17,9 @@ export type ExtendedOffer = {
   bedrooms: number;
   goods: string[];
   host: Host;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
   images: string[];
   maxAdults: number;
-};
-
+}

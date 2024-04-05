@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 import OfferInside from './offer-inside';
 import Map from '../../component/map';
 import { useAppDispatch, useAppSelector } from '../../hock';
-import { fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction, saveFavoritesExtendedOfferAction} from '../../store/api-actions';
+import { fetchNearbyOffersAction, fetchOfferIdAction, fetchReviewsOffersAction, saveFavoritesOffersAction} from '../../store/api-actions';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
 import { store } from '../../store';
@@ -52,9 +52,9 @@ function OfferPage(): JSX.Element {
     if (authorizationStatus !== AuthorizationStatus.Auth) {
       navigate(AppRoute.Login);
     } else {
-      store.dispatch(saveFavoritesExtendedOfferAction({
+      store.dispatch(saveFavoritesOffersAction({
         id: extendedOffer.id,
-        isFavorite: extendedOffer.isFavorite ? 0 : 1
+        isFavorite: extendedOffer.isFavorite
       }));
     }
   };

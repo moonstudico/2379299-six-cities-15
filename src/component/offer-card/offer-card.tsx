@@ -22,7 +22,7 @@ function OfferCardRew({offer, setActiveCardId, className}:Props): JSX.Element {
     } else {
       store.dispatch(saveFavoritesOffersAction({
         id: offer.id,
-        isFavorite: offer.isFavorite ? 0 : 1
+        isFavorite: offer.isFavorite
       }));
     }
   };
