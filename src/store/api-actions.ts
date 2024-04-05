@@ -60,6 +60,7 @@ export const saveReviewAction = createAsyncThunk<void, UserReview, {
   async ({id, comment, rating}, {dispatch, extra: api}) => {
     await api.post<UserReview>(`${APIRoute.Review}/${id}`, {comment, rating});
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    
     dispatch(fetchReviewsOffersAction(id as string));
   },
 );
@@ -97,7 +98,6 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
       isPremium: data.isPremium,
       rating: data.rating
     }));
-    // dispatch(fetchFavoritesOffersAction());
   },
 );
 
