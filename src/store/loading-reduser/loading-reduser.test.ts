@@ -9,7 +9,7 @@ describe('loadingReduser', () => {
     isNearbyOffersLoadingStatus: true,
   };
 
-  it('execute setError action', () => {
+    it('execute setError action', () => {
     const payload = 'Test error message';
 
     const expectedResult = {
@@ -36,6 +36,7 @@ describe('loadingReduser', () => {
     expect(result).toEqual(expectedResult);
   });
 
+  
   it('execute setOfferLoadingStatus action', () => {
     const expectedResult = {
       error: null,
