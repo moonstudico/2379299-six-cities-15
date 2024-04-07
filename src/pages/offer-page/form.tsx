@@ -64,6 +64,7 @@ function Form({id}: Props): JSX.Element {
                 checked={value === rating}
                 disabled={loading}
 
+
               />
               <label htmlFor={`${value}-stars`} className="reviews__rating-label form__rating-label" title={`${label}`}>
                 <svg className="form__star-image" width="37" height="33">
@@ -84,6 +85,7 @@ function Form({id}: Props): JSX.Element {
         disabled={loading}
         maxLength={MAX_LENGHT}
       >
+        
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
