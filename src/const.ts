@@ -27,8 +27,8 @@ export const STARS = [
 ];
 
 
-export const MAX_LENGHT = 301;
-export const MIN_LENGHT = 49;
+export const MAX_LENGHT = 300;
+export const MIN_LENGHT = 50;
 export const TIMEOUT_SHOW_ERROR = 2000;
 export const MAX_COUNT_REVIEWS = 10;
 
