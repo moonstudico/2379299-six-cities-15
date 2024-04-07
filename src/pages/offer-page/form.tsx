@@ -85,7 +85,6 @@ function Form({id}: Props): JSX.Element {
         disabled={loading}
         maxLength={MAX_LENGHT}
       >
-        
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

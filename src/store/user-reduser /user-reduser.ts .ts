@@ -3,7 +3,7 @@ import { getUserData, requireAuthorization } from '../action';
 import { AuthorizationStatus } from '../../const';
 import { UserData } from '../../types/user-data';
 import { Review } from '../../types/review';
-import { fetchReviewsOffersAction, saveReviewAction } from '../api-actions';
+import { fetchReviewsOffersAction, logoutAction, saveReviewAction } from '../api-actions';
 
 const userInitialState: {
   reviews: Review[];
@@ -65,6 +65,10 @@ export const userReduser = createSlice({
 
       .addCase(getUserData, (state, {payload}) => {
         state.userData = payload;
+      })
+
+      .addCase(logoutAction.fulfilled, (state) => {
+        state.userData = null;
       })
 
       .addCase(requireAuthorization, (state, {payload}) => {
