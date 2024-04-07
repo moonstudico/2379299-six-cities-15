@@ -10,7 +10,7 @@ export const changeCity = createAction<string>('сities/changeCity');
 
 export const getOffers = createAction<Offer[]>('сities/getOffers');
 
-export const changeOffer = createAction<StatusFavorite>('сities/changeOffer');
+export const changeOffer = createAction<Offer>('сities/changeOffer');
 
 export const getOfferId = createAction<ExtendedOffer | null>('сities/getOfferId');
 
@@ -19,6 +19,8 @@ export const getNearbyOffers = createAction<Offer[]>('сities/getNearbyOffers');
 export const getFavoritesOffers = createAction<Offer[]>('сities/getFavoritesOffers');
 
 export const getReviews = createAction<Review[]>('сities/getReviews ');
+
+export const changeReviews = createAction<Review>('сities/changeReviews');
 
 export const getUserData = createAction<UserData>('getUserData');
 

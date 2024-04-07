@@ -36,13 +36,19 @@ export const offersReduser = createSlice({
         if (state.offer && state.offer.id === payload.id) {
           state.offer = { ...state.offer, isFavorite: payload.isFavorite };
         }
-
         state.nearbyOffers = state.nearbyOffers.map((nearbyOffer) => {
           if (nearbyOffer.id === payload.id){
             return {...nearbyOffer, isFavorite: payload.isFavorite};
           }
           return nearbyOffer;
         });
+
+        const favoritesIndex = state.favoritesOffers.findIndex((offer) => offer.id === payload.id);
+        if (favoritesIndex === -1){
+          state.favoritesOffers.push (payload);
+        } else {
+          state.favoritesOffers.splice(favoritesIndex, 1);
+        }
       })
       .addCase(getOfferId, (state, {payload}) => {
         state.offer = payload;

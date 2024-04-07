@@ -17,6 +17,16 @@ export enum SortType{
   PriceHigh = 'Price: high to low',
   TopRated = 'Top rated first'
 }
+
+export const STARS = [
+  {label: 'perfect', value: 5},
+  {label: 'good', value:4},
+  {label: 'not bad', value:3},
+  {label: 'badly', value:2},
+  {label: 'terribly', value:1},
+];
+
+
 export const MAX_LENGHT = 300;
 export const MIN_LENGHT = 50;
 export const TIMEOUT_SHOW_ERROR = 2000;
