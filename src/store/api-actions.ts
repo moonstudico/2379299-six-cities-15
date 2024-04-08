@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
-import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
+import { APIRoute, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { changeOffer, getUserData, requireAuthorization, setError} from './action';
+import { setError} from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -72,27 +72,16 @@ export const fetchFavoritesOffersAction = createAsyncThunk<Offer [], undefined, 
   },
 );
 
-export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, {
+export const saveFavoritesOffersAction = createAsyncThunk<FullOffer, StatusFavorite, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/saveFavoritesOffers',
-  async ({id, isFavorite}, {dispatch, extra: api}) => {
+  async ({id, isFavorite}, { extra: api}) => {
     const newStatusFavorite = isFavorite ? 0 : 1;
     const {data} = await api.post<FullOffer>(`${APIRoute.Favorites}/${id}/${newStatusFavorite}`);
-    dispatch(changeOffer({
-      id: data.id,
-      title: data.title,
-      type: data.type,
-      price: data.price,
-      previewImage: data.previewImage,
-      city: data.city,
-      location: data.location,
-      isFavorite: data.isFavorite,
-      isPremium: data.isPremium,
-      rating: data.rating
-    }));
+    return data;
   },
 );
 
@@ -139,15 +128,9 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({login: email, password}, {dispatch, extra: api}) => {
-    try{
-      const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
-      dispatch(getUserData(data));
-      saveToken(data.token);
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    }catch{
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    }
+  async ({login: email, password}, { extra: api}) => {
+    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
   },
 );
 

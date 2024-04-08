@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ExtendedOffer } from '../../types/extended offer';
 import { Offer } from '../../types/offer';
-import { changeOffer } from '../action';
-import { fetchFavoritesOffersAction, fetchNearbyOffersAction, fetchOfferIdAction, fetchOffersAction, logoutAction } from '../api-actions';
+import { fetchFavoritesOffersAction, fetchNearbyOffersAction, fetchOfferIdAction, fetchOffersAction, logoutAction, saveFavoritesOffersAction } from '../api-actions';
 
 const offersInitialState: {
   offers: Offer[];
@@ -27,7 +26,7 @@ export const offersReduser = createSlice({
         state.offers = payload;
       })
 
-      .addCase(changeOffer, (state, {payload}) => {
+      .addCase(saveFavoritesOffersAction.fulfilled, (state, {payload}) => {
         state.offers = state.offers.map((offer) => {
           if (offer.id === payload.id){
             return {...offer, isFavorite: payload.isFavorite};
@@ -46,8 +45,11 @@ export const offersReduser = createSlice({
         });
 
         const favoritesIndex = state.favoritesOffers.findIndex((offer) => offer.id === payload.id);
+        const { id, title, type, price, previewImage, city, location, isFavorite, isPremium, rating} = payload;
+        const newFavorite = { id, title, type, price, previewImage, city, location, isFavorite, isPremium, rating};
+
         if (favoritesIndex === -1){
-          state.favoritesOffers.push (payload);
+          state.favoritesOffers.push (newFavorite);
         } else {
           state.favoritesOffers.splice(favoritesIndex, 1);
         }

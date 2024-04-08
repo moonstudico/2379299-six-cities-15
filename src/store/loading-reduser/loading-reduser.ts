@@ -23,6 +23,7 @@ export const loadingReduser = createSlice({
       .addCase(fetchOffersAction.pending, (state) => {
         state.isOffersDataLoading = true;
       })
+
       .addCase(fetchOffersAction.fulfilled, (state) => {
         state.isOffersDataLoading = false;
       })
@@ -30,9 +31,11 @@ export const loadingReduser = createSlice({
       .addCase(fetchOfferIdAction.pending, (state) => {
         state.isOfferLoadingStatus = true;
       })
+
       .addCase(fetchOfferIdAction.fulfilled, (state) => {
         state.isOfferLoadingStatus = false;
       })
+
       .addCase(fetchOfferIdAction.rejected, (state) => {
         state.isOfferLoadingStatus = false;
         state.error = 'Failed to fetch offer';
