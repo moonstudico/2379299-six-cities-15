@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { changeOffer, getOfferId, getUserData, requireAuthorization, setError, setOfferLoadingStatus } from './action';
+import { changeOffer, getUserData, requireAuthorization, setError} from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -93,7 +93,6 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
       isPremium: data.isPremium,
       rating: data.rating
     }));
-    // dispatch(fetchFavoritesOffersAction());
   },
 );
 
@@ -109,23 +108,15 @@ export const fetchNearbyOffersAction = createAsyncThunk<Offer [], string, {
   },
 );
 
-export const fetchOfferIdAction = createAsyncThunk<void, string, {
+export const fetchOfferIdAction = createAsyncThunk<ExtendedOffer, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchOfferId',
-  async(id, {dispatch, extra: api}) => {
-    dispatch(setOfferLoadingStatus(true));
-    try {
-      const {data} = await api.get<ExtendedOffer>(`${APIRoute.Offers}/${id}`);
-      dispatch(getOfferId(data));
-    } catch (error) {
-      dispatch(setError('Error when enabling data'));
-      throw error;
-    } finally {
-      dispatch(setOfferLoadingStatus(false));
-    }
+  async(id, { extra: api}) => {
+    const {data} = await api.get<ExtendedOffer>(`${APIRoute.Offers}/${id}`);
+    return data;
   }
 );
 
