@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setError, setNearbyOffersLoadingStatus, setOfferLoadingStatus, setOffersDataLoadingStatus } from '../action';
+import { setError, setNearbyOffersLoadingStatus, setOfferLoadingStatus} from '../action';
+import { fetchOffersAction } from '../api-actions';
 
 const loadingInitialState: {
   error: null | string;
@@ -23,9 +24,16 @@ export const loadingReduser = createSlice({
       .addCase(setError, (state, {payload}) => {
         state.error = payload;
       })
-      .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
-        state.isOffersDataLoading = payload;
+      // .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
+      //   state.isOffersDataLoading = payload;
+      // })
+      .addCase(fetchOffersAction.pending, (state) => {
+        state.isOffersDataLoading = true;
       })
+      .addCase(fetchOffersAction.fulfilled, (state) => {
+        state.isOffersDataLoading = false;
+      })
+
       .addCase(setOfferLoadingStatus, (state, {payload}) => {
         state.isOfferLoadingStatus = payload;
       })

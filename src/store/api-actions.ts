@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers, getUserData, requireAuthorization, setError, setOfferLoadingStatus, setOffersDataLoadingStatus } from './action';
+import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getUserData, requireAuthorization, setError, setOfferLoadingStatus } from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -24,17 +24,15 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchOffers',
-  async(_arg, {dispatch, extra: api}) => {
-    dispatch(setOffersDataLoadingStatus(true));
+  async(_arg, { extra: api}) => {
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
-    dispatch(setOffersDataLoadingStatus(false));
-    dispatch(getOffers(data));
+    return data;
   },
 );
 

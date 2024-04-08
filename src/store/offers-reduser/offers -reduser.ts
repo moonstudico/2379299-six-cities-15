@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ExtendedOffer } from '../../types/extended offer';
 import { Offer } from '../../types/offer';
-import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId, getOffers } from '../action';
-import { logoutAction } from '../api-actions';
+import { changeOffer, getFavoritesOffers, getNearbyOffers, getOfferId } from '../action';
+import { fetchOffersAction, logoutAction } from '../api-actions';
 
 const offersInitialState: {
   offers: Offer[];
@@ -23,9 +23,14 @@ export const offersReduser = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(getOffers, (state, {payload}) => {
+    // .addCase(getOffers, (state, {payload}) => {
+    //   state.offers = payload;
+    // })
+
+      .addCase(fetchOffersAction.fulfilled, (state, {payload}) => {
         state.offers = payload;
       })
+
       .addCase(changeOffer, (state, {payload}) => {
         state.offers = state.offers.map((offer) => {
           if (offer.id === payload.id){
