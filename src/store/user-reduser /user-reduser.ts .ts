@@ -52,6 +52,7 @@ export const userReduser = createSlice({
       })
 
       .addCase(saveReviewAction.fulfilled, (state, action) => {
+        state.authorizationStatus = AuthorizationStatus.Auth;
         state.reviews.push(action.payload);
         state.loading = false;
         state.reviewSuccess = true;

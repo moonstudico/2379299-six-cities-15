@@ -54,9 +54,8 @@ export const saveReviewAction = createAsyncThunk<Review, UserReview, {
   extra: AxiosInstance;
 }>(
   'user/saveReview',
-  async ({id, comment, rating}, {dispatch, extra: api}) => {
+  async ({id, comment, rating}, { extra: api}) => {
     const {data} = await api.post<Review>(`${APIRoute.Review}/${id}`, {comment, rating});
-    dispatch(requireAuthorization(AuthorizationStatus.Auth));
     return data;
   },
 );
