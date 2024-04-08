@@ -12,8 +12,6 @@ import LoadingScreen from '../loading-screen/loading-screen';
 import { useEffect } from 'react';
 import { store } from '../../store';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { ExtendedOffer } from '../../types/extended offer';
-import { Offer } from '../../types/offer';
 
 function OfferPage(): JSX.Element {
 
@@ -27,7 +25,6 @@ function OfferPage(): JSX.Element {
     }
   }, [id, dispatch]);
 
-
   const extendedOffer = useAppSelector((state) => state.offers.offer);
   const nearbyOffer = useAppSelector((state) => state.offers.nearbyOffers).slice(0, 3);
   const reviews = useAppSelector((state) => state.user.reviews);
@@ -35,7 +32,7 @@ function OfferPage(): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
   const navigate = useNavigate();
 
-  const mapOffers: ExtendedOffer[] | Offer[] = nearbyOffer.concat(extendedOffer);
+  const mapOffers = [...(extendedOffer ? [extendedOffer] : []), ...nearbyOffer];
 
   if (isOfferLoading) {
     return <LoadingScreen />;

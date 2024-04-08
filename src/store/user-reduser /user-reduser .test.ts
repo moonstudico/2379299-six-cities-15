@@ -7,7 +7,10 @@ describe('userInitialState', () => {
   const initialState = {
     reviews: [],
     authorizationStatus: AuthorizationStatus.Unknown,
-    userData: null
+    userData: null,
+    loading: false,
+    error: null,
+    reviewSuccess: false,
   };
 
   it('execute getReviews action', () => {
@@ -15,10 +18,12 @@ describe('userInitialState', () => {
     const expectedResult = {
       reviews: reviews,
       authorizationStatus: AuthorizationStatus.Unknown,
-      userData: null
+      userData: null,
+      loading: false,
+      error: null,
+      reviewSuccess: false,
     };
     const result = userReduser.reducer(initialState, getReviews(reviews));
-
     expect(result).toEqual(expectedResult);
   });
 
