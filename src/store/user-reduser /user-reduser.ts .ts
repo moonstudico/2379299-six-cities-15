@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUserData, requireAuthorization } from '../action';
+import { requireAuthorization } from '../action';
 import { AuthorizationStatus } from '../../const';
 import { UserData } from '../../types/user-data';
 import { Review } from '../../types/review';
-import { fetchReviewsOffersAction, logoutAction, saveReviewAction } from '../api-actions';
+import { checkAuthAction, fetchReviewsOffersAction, logoutAction, saveReviewAction } from '../api-actions';
 
 const userInitialState: {
   reviews: Review[];
@@ -63,11 +63,18 @@ export const userReduser = createSlice({
         state.error = action.error.message || 'Failed to save review';
       })
 
-      .addCase(getUserData, (state, {payload}) => {
+      .addCase(checkAuthAction.fulfilled, (state, {payload}) => {
+        state.authorizationStatus = AuthorizationStatus.Auth;
         state.userData = payload;
       })
 
+      .addCase(checkAuthAction.rejected, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
+        state.userData = null;
+      })
+
       .addCase(logoutAction.fulfilled, (state) => {
+        state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.userData = null;
       })
 

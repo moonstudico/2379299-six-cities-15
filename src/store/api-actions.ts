@@ -9,9 +9,9 @@ import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
 import { ExtendedOffer } from '../types/extended offer';
-import { UserReview } from '../types/userReview';
+import { UserReview } from '../types/user-review';
 import { Review } from '../types/review';
-import { StatusFavorite } from '../types/statusFavorites';
+import { StatusFavorite } from '../types/status-favorites';
 import { FullOffer } from '../types/full-offer';
 
 export const clearErrorAction = createAsyncThunk(
@@ -132,21 +132,17 @@ export const fetchOfferIdAction = createAsyncThunk<void, string, {
   }
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async(_arg, {dispatch, extra: api}) => {
-    try{
-      const {data} = await api.get<UserData>(APIRoute.Login);
-      dispatch(requireAuthorization(AuthorizationStatus.Auth));
-      dispatch(getUserData(data));
-    }catch{
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
-    }
-  },
+  async(_arg, { extra: api}) => {
+    const {data} = await api.get<UserData>(APIRoute.Login);
+    return data;
+  }
+
 );
 
 export const loginAction = createAsyncThunk<void, AuthData, {
@@ -173,9 +169,8 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );
