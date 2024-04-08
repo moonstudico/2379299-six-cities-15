@@ -3,7 +3,7 @@ import { Offer } from '../types/offer';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
-import { changeOffer, getNearbyOffers, getOfferId, getUserData, requireAuthorization, setError, setOfferLoadingStatus } from './action';
+import { changeOffer, getOfferId, getUserData, requireAuthorization, setError, setOfferLoadingStatus } from './action';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
@@ -97,15 +97,15 @@ export const saveFavoritesOffersAction = createAsyncThunk<void, StatusFavorite, 
   },
 );
 
-export const fetchNearbyOffersAction = createAsyncThunk<void, string, {
+export const fetchNearbyOffersAction = createAsyncThunk<Offer [], string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchNearbyOffers',
-  async(id, {dispatch, extra: api}) => {
+  async(id, {extra: api}) => {
     const {data} = await api.get<Offer []>(`${APIRoute.Offers}/${id}/nearby`);
-    dispatch(getNearbyOffers (data));
+    return data;
   },
 );
 

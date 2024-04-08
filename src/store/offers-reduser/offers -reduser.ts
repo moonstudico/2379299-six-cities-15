@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ExtendedOffer } from '../../types/extended offer';
 import { Offer } from '../../types/offer';
-import { changeOffer, getNearbyOffers, getOfferId } from '../action';
-import { fetchFavoritesOffersAction, fetchOffersAction, logoutAction } from '../api-actions';
+import { changeOffer, getOfferId } from '../action';
+import { fetchFavoritesOffersAction, fetchNearbyOffersAction, fetchOffersAction, logoutAction } from '../api-actions';
 
 const offersInitialState: {
   offers: Offer[];
@@ -59,7 +59,7 @@ export const offersReduser = createSlice({
       .addCase(getOfferId, (state, {payload}) => {
         state.offer = payload;
       })
-      .addCase(getNearbyOffers, (state, {payload}) => {
+      .addCase(fetchNearbyOffersAction.fulfilled, (state, {payload}) => {
         state.nearbyOffers = payload;
       })
       .addCase(fetchFavoritesOffersAction .fulfilled, (state, {payload}) => {
