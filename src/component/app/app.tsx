@@ -7,13 +7,22 @@ import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const.ts';
 import PrivateRoute from '../../component/private-route';
 import Layout from '../layout';
-import { useAppSelector } from '../../hock/index.ts';
+import { useAppDispatch, useAppSelector } from '../../hock/index.ts';
 import LoadingScreen from '../../pages/loading-screen/loading-screen.tsx';
+import { useEffect } from 'react';
+import { fetchFavoritesOffersAction } from '../../store/api-actions.ts';
 
 function App (): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.user.authorizationStatus);
   const isOffersDataLoading = useAppSelector((state) => state.loading.isOffersDataLoading);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavoritesOffersAction());
+    }
+  }, [dispatch, authorizationStatus]);
 
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {

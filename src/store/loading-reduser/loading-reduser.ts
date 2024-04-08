@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { setError, setNearbyOffersLoadingStatus, setOfferLoadingStatus, setOffersDataLoadingStatus } from '../action';
+import { fetchNearbyOffersAction, fetchOfferIdAction, fetchOffersAction } from '../api-actions';
 
 const loadingInitialState: {
   error: null | string;
@@ -20,17 +20,29 @@ export const loadingReduser = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(setError, (state, {payload}) => {
-        state.error = payload;
+      .addCase(fetchOffersAction.pending, (state) => {
+        state.isOffersDataLoading = true;
       })
-      .addCase(setOffersDataLoadingStatus, (state, {payload}) => {
-        state.isOffersDataLoading = payload;
+
+      .addCase(fetchOffersAction.fulfilled, (state) => {
+        state.isOffersDataLoading = false;
       })
-      .addCase(setOfferLoadingStatus, (state, {payload}) => {
-        state.isOfferLoadingStatus = payload;
+
+      .addCase(fetchOfferIdAction.pending, (state) => {
+        state.isOfferLoadingStatus = true;
       })
-      .addCase(setNearbyOffersLoadingStatus, (state, {payload}) => {
-        state.isNearbyOffersLoadingStatus = payload;
+
+      .addCase(fetchOfferIdAction.fulfilled, (state) => {
+        state.isOfferLoadingStatus = false;
+      })
+
+      .addCase(fetchOfferIdAction.rejected, (state) => {
+        state.isOfferLoadingStatus = false;
+        state.error = 'Failed to fetch offer';
+      })
+
+      .addCase(fetchNearbyOffersAction.pending, (state) => {
+        state.isNearbyOffersLoadingStatus = true;
       });
   }
 });

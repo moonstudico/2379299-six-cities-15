@@ -1,10 +1,6 @@
 import FavoritesCity from '../favorites/favorites-city';
 import { useAppSelector } from '../../hock';
 import { City } from '../../types/city';
-import { store } from '../../store';
-import { fetchFavoritesOffersAction } from '../../store/api-actions';
-
-store.dispatch(fetchFavoritesOffersAction());
 
 function Favorites(): JSX.Element {
 

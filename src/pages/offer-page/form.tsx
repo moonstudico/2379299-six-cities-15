@@ -13,6 +13,7 @@ function Form({id}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const reviewSuccess = useAppSelector((state) => state.user.reviewSuccess);
   const loading = useAppSelector((state) => state.user.loading);
+  const [isSubmitActive, setIsSubmitActive] = useState(false);
 
   useEffect(() => {
     if (reviewSuccess) {
@@ -20,6 +21,12 @@ function Form({id}: Props): JSX.Element {
       setRating(undefined);
     }
   }, [reviewSuccess]);
+
+
+  useEffect(() => {
+    setIsSubmitActive(!rating || rating === 0 || comment.length <= MIN_LENGHT || comment.length >= MAX_LENGHT);
+  }, [rating, comment.length]);
+
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -85,13 +92,12 @@ function Form({id}: Props): JSX.Element {
         disabled={loading}
         maxLength={MAX_LENGHT}
       >
-        
       </textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!rating || rating === 0 || comment.length <= MIN_LENGHT || comment.length >= MAX_LENGHT} >Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={isSubmitActive || loading} >Submit</button>
       </div>
     </form>
   );

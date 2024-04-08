@@ -4,7 +4,6 @@ import { AuthorizationStatus } from '../const';
 import { ExtendedOffer } from '../types/extended offer';
 import { Review } from '../types/review';
 import { UserData } from '../types/user-data';
-import { StatusFavorite } from '../types/statusFavorites';
 
 export const changeCity = createAction<string>('сities/changeCity');
 
