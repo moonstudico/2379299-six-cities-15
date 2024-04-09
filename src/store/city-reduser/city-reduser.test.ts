@@ -1,7 +1,5 @@
-
 import { changeCity } from '../action';
 import { cityReduser } from './city-reduser';
-
 
 describe('cityReduser', () => {
   it('execute changeCity action', () => {
@@ -13,5 +11,3 @@ describe('cityReduser', () => {
     expect(result.currentCity).toEqual(newCity);
   });
 });
-
-

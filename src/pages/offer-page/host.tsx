@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { ExtendedOffer } from '../../types/extended offer';
+import { ExtendedOffer } from '../../types/extended-offer';
 
 type Props = {
   extendedOffer: ExtendedOffer;

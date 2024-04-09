@@ -185,3 +185,10 @@ export const reviewsTest = [
     rating: 4
   }
 ];
+
+export const UserData = {
+  id: 123456789,
+  email: 'HTMLAcademy@mail.ru',
+  token: 'b67ddfd5-b953',
+  avatarUrl: 'https://url-to-image/image.png',
+};

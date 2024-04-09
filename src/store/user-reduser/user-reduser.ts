@@ -3,7 +3,13 @@ import { requireAuthorization } from '../action';
 import { AuthorizationStatus } from '../../const';
 import { UserData } from '../../types/user-data';
 import { Review } from '../../types/review';
-import { checkAuthAction, fetchReviewsOffersAction, loginAction, logoutAction, saveReviewAction } from '../api-actions';
+import {
+  checkAuthAction,
+  fetchReviewsOffersAction,
+  loginAction,
+  logoutAction,
+  saveReviewAction,
+} from '../api-actions';
 
 const userInitialState: {
   reviews: Review[];
@@ -24,15 +30,12 @@ const userInitialState: {
 export const userReduser = createSlice({
   name: 'userReduser',
   initialState: userInitialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
-
       .addCase(fetchReviewsOffersAction.pending, (state) => {
         state.loading = true;
         state.error = null;
-
       })
 
       .addCase(fetchReviewsOffersAction.fulfilled, (state, action) => {
@@ -64,7 +67,7 @@ export const userReduser = createSlice({
         state.error = action.error.message || 'Failed to save review';
       })
 
-      .addCase(checkAuthAction.fulfilled, (state, {payload}) => {
+      .addCase(checkAuthAction.fulfilled, (state, { payload }) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.userData = payload;
       })
@@ -74,11 +77,11 @@ export const userReduser = createSlice({
         state.userData = null;
       })
 
-      .addCase(loginAction.fulfilled, (state, {payload}) => {
+      .addCase(loginAction.fulfilled, (state, { payload }) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.userData = payload;
-
-      }).addCase(loginAction.rejected, (state) => {
+      })
+      .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
 
@@ -87,9 +90,8 @@ export const userReduser = createSlice({
         state.userData = null;
       })
 
-      .addCase(requireAuthorization, (state, {payload}) => {
+      .addCase(requireAuthorization, (state, { payload }) => {
         state.authorizationStatus = payload;
       });
-  }
+  },
 });
-

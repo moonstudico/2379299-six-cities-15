@@ -8,7 +8,7 @@ import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
-import { ExtendedOffer } from '../types/extended offer';
+import { ExtendedOffer } from '../types/extended-offer';
 import { UserReview } from '../types/user-review';
 import { Review } from '../types/review';
 import { StatusFavorite } from '../types/status-favorites';

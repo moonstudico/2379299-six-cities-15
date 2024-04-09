@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Offer } from '../types/offer';
 import { AuthorizationStatus } from '../const';
-import { ExtendedOffer } from '../types/extended offer';
+import { ExtendedOffer } from '../types/extended-offer';
 import { Review } from '../types/review';
 import { UserData } from '../types/user-data';
 
