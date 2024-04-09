@@ -5,8 +5,6 @@ import { cityReduser } from './city-reduser/city-reduser';
 import { loadingReduser } from './loading-reduser/loading-reduser';
 import { userReduser } from './user-reduser/user-reduser';
 
-
-
 const rootReducer = combineReducers({
   offers: offersReduser.reducer,
   user: userReduser.reducer,

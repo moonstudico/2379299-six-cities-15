@@ -74,12 +74,12 @@ export const userReduser = createSlice({
         state.userData = null;
       })
 
-      .addCase(loginAction.fulfilled, (state) => {
+      .addCase(loginAction.fulfilled, (state, {payload}) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
+        state.userData = payload;
 
       }).addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
-
       })
 
       .addCase(logoutAction.fulfilled, (state) => {
