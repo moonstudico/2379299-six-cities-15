@@ -50,7 +50,7 @@ export const offersTest = [
 ];
 
 export const offerTest = {
-  id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
+  id: '9772b366-ef03-4bc4-a728-2e885fc44eac',
   title: 'Beautiful & luxurious studio at great location',
   type: 'apartment' as HousingType,
   price: 120,
@@ -186,9 +186,83 @@ export const reviewsTest = [
   }
 ];
 
+export const favoriteTrue = {
+  id: '9772b366-ef03-4bc4-a728-2e885fc44eac',
+  title: 'Tile House',
+  type: 'room' as HousingType,
+  price: 321,
+  previewImage: 'https://15.design.htmlacademy.pro/static/hotel/9.jpg',
+  city: {
+    name: 'Amsterdam',
+    location: {
+      latitude: 52.37454,
+      longitude: 4.897976,
+      zoom: 13
+    }
+  },
+  location: {
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+    zoom: 16
+  },
+  isFavorite: true,
+  isPremium: false,
+  rating: 1.5
+};
+
+
 export const UserData = {
   id: 123456789,
   email: 'HTMLAcademy@mail.ru',
   token: 'b67ddfd5-b953',
   avatarUrl: 'https://url-to-image/image.png',
 };
+
+export const offersFavoritesTest = [
+  {
+    id: '9772b366-ef03-4bc4-a728-2e444fc44eac',
+    title: 'Tile House',
+    type: 'room' as HousingType,
+    price: 321,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/9.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 16
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 1.5
+  },
+  {
+    id: '2f47ca94-4d24-4425-9ae6-43d7333df736',
+    title: 'House in countryside',
+    type: 'room' as HousingType,
+    price: 242,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/3.jpg',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 16
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 2.7
+  }
+];

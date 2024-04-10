@@ -9,8 +9,8 @@ const loadingInitialState: {
 } = {
   error: null,
   isOffersDataLoading: false,
-  isOfferLoadingStatus: true,
-  isNearbyOffersLoadingStatus: true,
+  isOfferLoadingStatus: false,
+  isNearbyOffersLoadingStatus: false,
 };
 
 export const loadingReduser = createSlice({
