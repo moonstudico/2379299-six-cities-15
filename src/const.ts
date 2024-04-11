@@ -26,7 +26,6 @@ export const STARS = [
   {label: 'terribly', value:1},
 ];
 
-
 export const MAX_LENGHT = 300;
 export const MIN_LENGHT = 50;
 export const TIMEOUT_SHOW_ERROR = 2000;
